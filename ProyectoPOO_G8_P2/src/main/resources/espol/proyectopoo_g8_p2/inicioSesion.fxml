@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.proyectopoo_g8_p2.InicioSesionController">
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -44,7 +43,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <Button fx:id="botonRegresar" alignment="CENTER" mnemonicParsing="false" text="Regresar">
+            <Button fx:id="botonRegresar" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#regresarPrincipal" text="Regresar">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>
