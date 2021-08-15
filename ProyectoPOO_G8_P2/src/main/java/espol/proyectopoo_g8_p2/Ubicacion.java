@@ -10,22 +10,40 @@ package espol.proyectopoo_g8_p2;
  * @author JMaci
  */
 public class Ubicacion {
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     
-    public int getX(){
+    public Ubicacion(double x, double y){
+        this.x = x;
+        this.y = y;
+    }
+    public double getX() {
         return x;
     }
-    
-    public int getY(){
-        return y;
-    }
-    
-    public void setX(int x){
+    public void setX(double x) {
         this.x = x;
     }
-    
-    public void setY(int y){
+    public double getY() {
+        return y;
+    }
+    public void setY(double y) {
         this.y = y;
+    }
+    /**
+     * calcula la distancia cartesiana entre la ubicacion pasada 
+     * como parametro y el objeto que llama a la funcion
+     * d =  ( (x2 - x1)^2 + (y2 - y1)^2 )^1/2
+     * */
+    public double calcularDistancia(Ubicacion u){
+        return Math.sqrt(Math.pow(u.x-x,2) + Math.pow(u.y - y,2));
+    }
+
+    @Override
+    public String toString() {
+        return "Ubicacion{" + "x=" + x + ", y=" + y + '}';
+    }
+    
+    public String toCSV() {
+        return getX()+":"+getY();
     }
 }

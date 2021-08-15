@@ -3,7 +3,7 @@ public class Casa {
     private String manzana;
     private Ubicacion coordenadas;
     private String villa;
-    private Residente residente;
+    private String residente;
      /**
      * Constructor para la clase Propiedad
      * @param manzana - Define la manzana 
@@ -13,7 +13,7 @@ public class Casa {
      
      */
     
-    public Casa(String manzana,Ubicacion coordenadas,String villa,Residente residente){
+    public Casa(String manzana,Ubicacion coordenadas,String villa,String residente){
         this.manzana=manzana;
         this.coordenadas=coordenadas;
         this.villa=villa;
@@ -24,7 +24,7 @@ public class Casa {
         this.manzana=manzana;
         this.coordenadas=coordenadas;
         this.villa=villa;
-        this.residente=null;
+        residente="";
     }
     public String getManzana(){
     return manzana;
@@ -35,7 +35,7 @@ public class Casa {
       public String getVilla(){
     return villa;
     }
-       public Residente getResidente(){
+       public String getResidente(){
     return residente;
     }
     }

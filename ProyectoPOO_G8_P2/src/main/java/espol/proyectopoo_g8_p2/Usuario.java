@@ -16,5 +16,6 @@ public abstract class Usuario {
     public String getContrasenia(){
         return contrasenia;
     }
+    
 }
 
