@@ -15,16 +15,16 @@ public class Casa {
     
     public Casa(String manzana,Ubicacion coordenadas,String villa,Residente residente){
         this.manzana=manzana;
+        this.coordenadas=coordenadas;
         this.villa=villa;
         this.residente=residente;
         
     }
     public Casa(String manzana,Ubicacion coordenadas,String villa){
         this.manzana=manzana;
-        this.villa=villa;
         this.coordenadas=coordenadas;
+        this.villa=villa;
         this.residente=null;
-        
     }
     public String getManzana(){
     return manzana;
