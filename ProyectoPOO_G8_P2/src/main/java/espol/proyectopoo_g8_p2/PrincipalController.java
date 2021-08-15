@@ -10,14 +10,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 /**
  * FXML Controller class
  *
  * @author JMaci
  */
 public class PrincipalController implements Initializable {
+
 
     @FXML
     private Button botonInicioSesion;
@@ -38,4 +40,5 @@ public class PrincipalController implements Initializable {
     private void switchToInicioSesion() throws IOException {
         App.setRoot("inicioSesion");
     }
+
 }
