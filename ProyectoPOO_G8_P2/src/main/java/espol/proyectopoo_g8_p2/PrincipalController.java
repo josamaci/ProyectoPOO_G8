@@ -10,13 +10,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
  *
  * @author JMaci
  */
-public class PrimaryController implements Initializable {
+public class PrincipalController implements Initializable {
+
+    @FXML
+    private Button botonInicioSesion;
+    @FXML
+    private Button botonSimulacion;
 
     /**
      * Initializes the controller class.
@@ -29,7 +35,7 @@ public class PrimaryController implements Initializable {
     }    
     
     @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+    private void switchToInicioSesion() throws IOException {
+        App.setRoot("inicioSesion");
     }
 }
