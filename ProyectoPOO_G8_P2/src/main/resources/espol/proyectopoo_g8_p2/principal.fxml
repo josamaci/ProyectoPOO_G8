@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.proyectopoo_g8_p2.PrimaryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.proyectopoo_g8_p2.PrincipalController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,12 +23,12 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="115.0" text="Inicio de sesión" textAlignment="CENTER">
+            <Button fx:id="botonInicioSesion" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#switchToInicioSesion" prefHeight="33.0" prefWidth="115.0" text="Inicio de sesión" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="40.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="115.0" text="Simulación" textAlignment="CENTER">
+            <Button fx:id="botonSimulacion" alignment="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="115.0" text="Simulación" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
