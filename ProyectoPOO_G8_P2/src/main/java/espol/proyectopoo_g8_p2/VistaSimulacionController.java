@@ -18,14 +18,11 @@ import javafx.scene.input.MouseEvent;
  *
  * @author JMaci
  */
-public class PrincipalController implements Initializable {
+public class VistaSimulacionController implements Initializable {
 
 
     @FXML
-    private Button botonInicioSesion;
-    @FXML
-    private Button botonSimulacion;
-
+    private Button botonRegresar;
     /**
      * Initializes the controller class.
      * @param url
@@ -37,13 +34,8 @@ public class PrincipalController implements Initializable {
     }    
     
     @FXML
-    private void switchToInicioSesion() throws IOException {
-        App.setRoot("inicioSesion");
-    }
-
-    @FXML
-    private void irSimulacion(MouseEvent event) throws IOException {
-        App.setRoot("vistaSimulacion");
+    private void regresarPrincipal(MouseEvent event) throws IOException {
+        App.setRoot("principal");
     }
 
 }

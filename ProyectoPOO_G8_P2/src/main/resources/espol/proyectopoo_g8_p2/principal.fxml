@@ -28,7 +28,7 @@
                   <Insets bottom="40.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="botonSimulacion" alignment="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="115.0" text="Simulación" textAlignment="CENTER">
+            <Button fx:id="botonSimulacion" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#irSimulacion" prefHeight="33.0" prefWidth="115.0" text="Simulación" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
