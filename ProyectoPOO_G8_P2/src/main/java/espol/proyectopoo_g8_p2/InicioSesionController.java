@@ -5,6 +5,7 @@
  */
 package espol.proyectopoo_g8_p2;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -41,6 +42,12 @@ public class InicioSesionController implements Initializable {
     
     @FXML
     private void iniciarSesion(MouseEvent event) {
+        
+    }
+
+    @FXML
+    private void regresarPrincipal(MouseEvent event) throws IOException {
+        App.setRoot("principal");
     }
 
 }
