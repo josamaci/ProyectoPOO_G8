@@ -9,7 +9,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -42,7 +45,24 @@ public class InicioSesionController implements Initializable {
     
     @FXML
     private void iniciarSesion(MouseEvent event) {
+        String usuario="";
+        String contrasenia="";   
         
+        try{
+            
+        usuario = textNombre.getText();
+        if(usuario.isBlank()){
+        throw new NullPointerException();}
+
+        contrasenia = textContra.getText();
+        if(usuario.isBlank()){
+        throw new NullPointerException();}
+            
+        }catch(NullPointerException e){
+        Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR NINGUNO DE LOS CAMPOS EN BLANCO!");
+        alert.show();
+            alert.show();
+        }
     }
 
     @FXML
