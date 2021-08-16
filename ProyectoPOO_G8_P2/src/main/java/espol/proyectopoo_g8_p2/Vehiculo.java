@@ -5,6 +5,13 @@
  */
 package espol.proyectopoo_g8_p2;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author andre
@@ -24,5 +31,31 @@ public class Vehiculo {
     
     public String getPropietario(){
         return nombrePropietario;
+    }
+    
+    public static List<Vehiculo> cargarVehiculos(){
+        
+            String ruta = "vehiculos.txt";
+            List<Vehiculo> vehiculos = new ArrayList<>();
+            
+            try(InputStream input = App.class.getResource(ruta).openStream();
+                BufferedReader bf = new BufferedReader(
+                                    new InputStreamReader(input,"UTF-8"))){
+                
+                String linea;
+                
+                while((linea=bf.readLine())!=null){
+                    System.out.println(linea);
+                    String[] p = linea.split(",");
+                    
+                    Vehiculo vehiculo = new Vehiculo(p[0],p[1]);
+                    vehiculos.add(vehiculo);
+                }
+                
+            } catch (IOException ex){
+                System.out.println("ERROR: No se pudo cargar la información de los residentes");
+                ex.printStackTrace();
+            }
+        return vehiculos;
     }
 }
