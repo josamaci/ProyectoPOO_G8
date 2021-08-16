@@ -18,9 +18,9 @@
                   <Font name="Corbel Bold Italic" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="textNombre" prefHeight="25.0" prefWidth="404.0">
+            <TextField fx:id="textNombre" prefHeight="25.0" prefWidth="376.0">
                <VBox.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                  <Insets bottom="15.0" left="200.0" right="200.0" top="15.0" />
                </VBox.margin>
             </TextField>
             <Label alignment="CENTER" text="Ingrese su contraseña:">
@@ -30,7 +30,7 @@
             </Label>
             <TextField fx:id="textContra">
                <VBox.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                  <Insets bottom="15.0" left="200.0" right="200.0" top="15.0" />
                </VBox.margin>
             </TextField>
             <Button fx:id="botonInicioSesion" mnemonicParsing="false" onMouseClicked="#iniciarSesion" text="Aceptar" />
