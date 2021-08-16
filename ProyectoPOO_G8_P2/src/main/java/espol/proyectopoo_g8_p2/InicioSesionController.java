@@ -55,7 +55,7 @@ public class InicioSesionController implements Initializable {
         throw new NullPointerException();}
 
         contrasenia = textContra.getText();
-        if(usuario.isBlank()){
+        if(contrasenia.isBlank()){
         throw new NullPointerException();}
             
         }catch(NullPointerException e){
