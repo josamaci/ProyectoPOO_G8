@@ -1,5 +1,8 @@
 package espol.proyectopoo_g8_p2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Usuario {
     private String nombreUsuario;
     private String contrasenia;
@@ -22,6 +25,14 @@ public abstract class Usuario {
         return true;
         }
     return false;
+    }
+    
+    public static List<Usuario> cargarUsuario(){
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.addAll(Residente.cargarResidente());
+        usuarios.addAll(Administrador.cargarAdmin());
+        
+        return usuarios;
     }
 }
 

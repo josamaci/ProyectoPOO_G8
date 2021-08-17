@@ -60,28 +60,21 @@ public class InicioSesionController implements Initializable {
         
         boolean c1 = false;
         boolean c2 = false;
+        Usuario encontrado=null;
         
-        for(Residente r: PrincipalController.getResidentes()){
-            if(r.getNombreUsuario().equals(usuario)){
+        for(Usuario u: PrincipalController.getUsuarios()){
+            
+            if(u.getNombreUsuario().equals(usuario)){
                 c1= true;
-                if(r.getContrasenia().equals(contrasenia)){
-                    c2 = true;}
+
+                if(u.getContrasenia().equals(contrasenia)){
+                    c2 = true;
+                    encontrado = u;
+                    }
             }}
-        
-            if(c1){
-                if(c2){
-                    App.setRoot("vistaResidente");
-                }else{
-                Alert alert = new Alert(Alert.AlertType.ERROR, "CONTRASEÑA INCORRECTA");
-                alert.show();
-                textContra.clear();
-                }
-            }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR, "USUARIO NO ENCONTRADO");
-                alert.show();
-                textNombre.clear();
-                textContra.clear();
-            }
+        if(encontrado instanceof Residente){
+            comprobarResidente(c1,c2);
+        }else{comprobarAdmin(c1,c2);}
         
         
         }catch(NullPointerException e){
@@ -95,5 +88,38 @@ public class InicioSesionController implements Initializable {
     private void regresarPrincipal(MouseEvent event) throws IOException {
         App.setRoot("principal");
     }
-
+    
+    private void comprobarResidente(boolean c1, boolean c2) throws IOException{
+    if(c1){
+                if(c2){
+                    App.setRoot("vistaResidente");
+                }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR, "CONTRASEÑA INCORRECTA");
+                alert.show();
+                textContra.clear();
+                }
+            }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR, "USUARIO NO ENCONTRADO");
+                alert.show();
+                textNombre.clear();
+                textContra.clear();
+            }
+    }
+    
+    private void comprobarAdmin(boolean c1, boolean c2) throws IOException{
+    if(c1){
+        if(c2){
+            App.setRoot("vistaAdmin");
+                }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR, "CONTRASEÑA INCORRECTA");
+                alert.show();
+                textContra.clear();
+                }
+            }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR, "USUARIO NO ENCONTRADO");
+                alert.show();
+                textNombre.clear();
+                textContra.clear();
+            }
+    }
 }
