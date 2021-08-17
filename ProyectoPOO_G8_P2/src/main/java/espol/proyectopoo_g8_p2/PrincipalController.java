@@ -5,6 +5,7 @@
  */
 package espol.proyectopoo_g8_p2;
 
+import espol.proyectopoo_g8_p2.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,11 +26,8 @@ public class PrincipalController implements Initializable {
     private Button botonInicioSesion;
     @FXML
     private Button botonSimulacion;
-
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -45,5 +43,4 @@ public class PrincipalController implements Initializable {
     private void irSimulacion(MouseEvent event) throws IOException {
         App.setRoot("vistaSimulacion");
     }
-
 }
