@@ -39,12 +39,12 @@
                         <Font name="Consolas" size="15.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Salir">
+                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#regresarInicioSesion" text="Salir">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="545.0" />
+                        <Insets left="350.0" />
                      </HBox.margin>
                   </Button>
                </children>
