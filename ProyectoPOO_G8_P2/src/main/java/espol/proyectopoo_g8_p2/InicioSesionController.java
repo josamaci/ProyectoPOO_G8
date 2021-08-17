@@ -44,7 +44,7 @@ public class InicioSesionController implements Initializable {
     }    
     
     @FXML
-    private void iniciarSesion(MouseEvent event) {
+    private void iniciarSesion(MouseEvent event) throws IOException{
         String usuario="";
         String contrasenia="";   
         
@@ -57,11 +57,29 @@ public class InicioSesionController implements Initializable {
         contrasenia = textContra.getText();
         if(contrasenia.isBlank()){
         throw new NullPointerException();}
-            
+        
+        for(Residente r: PrincipalController.getResidentes()){
+            if(r.getNombreUsuario().equals(usuario)){
+                if(r.getContrasenia().equals(contrasenia)){
+                    App.setRoot("vistaResidente");
+                }
+                else{
+                Alert alert = new Alert(Alert.AlertType.ERROR, "CONTRASEÑA INCORRECTA");
+                alert.show();
+                textNombre.clear();
+                }
+            }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR, "USUARIO NO ENCONTRADO");
+                alert.show();
+                textNombre.clear();
+                textContra.clear();
+            }
+        }
+        
         }catch(NullPointerException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR NINGUNO DE LOS CAMPOS EN BLANCO!");
         alert.show();
-            alert.show();
+            
         }
     }
 
