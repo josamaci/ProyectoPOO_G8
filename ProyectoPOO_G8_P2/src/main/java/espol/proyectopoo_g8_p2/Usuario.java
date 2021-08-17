@@ -17,5 +17,11 @@ public abstract class Usuario {
         return contrasenia;
     }
     
+    public boolean equals(Usuario u){
+        if (u.nombreUsuario.equals(nombreUsuario) && u.contrasenia.equals(contrasenia)){
+        return true;
+        }
+    return false;
+    }
 }
 

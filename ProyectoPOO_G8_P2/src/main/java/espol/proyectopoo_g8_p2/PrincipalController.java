@@ -36,6 +36,7 @@ public class PrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        casas = Casa.cargarCasa();
        residentes = Residente.cargarResidente();
+       admins = Administrador.cargarAdmin();
                }    
     
     @FXML
