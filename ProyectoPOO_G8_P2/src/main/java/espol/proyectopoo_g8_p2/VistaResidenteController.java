@@ -5,10 +5,14 @@
  */
 package espol.proyectopoo_g8_p2;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 /**
  * FXML Controller class
  *
@@ -16,14 +20,21 @@ import javafx.fxml.Initializable;
  */
 public class VistaResidenteController implements Initializable {
 
+
+    @FXML
+    private Button botonCerrar;
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void cerrarSesion(MouseEvent event) throws IOException{
+        App.setRoot("principal");
+    }
+    
     
 }

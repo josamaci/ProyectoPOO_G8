@@ -84,7 +84,7 @@ public class Residente extends Usuario{
                 String linea;
                 
                 while((linea=bf.readLine())!=null){
-                    System.out.println(linea);
+                    
                     String[] p = linea.split(",");
                     
                     Residente residente = new Residente(p[0],p[1],p[2],null,p[4],p[5],null,p[7],p[8]);

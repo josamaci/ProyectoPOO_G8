@@ -45,7 +45,7 @@ public class Vehiculo {
                 String linea;
                 
                 while((linea=bf.readLine())!=null){
-                    System.out.println(linea);
+                    
                     String[] p = linea.split(",");
                     
                     Vehiculo vehiculo = new Vehiculo(p[0],p[1]);

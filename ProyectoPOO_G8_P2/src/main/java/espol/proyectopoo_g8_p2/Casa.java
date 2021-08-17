@@ -59,7 +59,7 @@ public class Casa {
                 String linea;
                 
                 while((linea=bf.readLine())!=null){
-                    System.out.println(linea);
+                    
                     String[] p = linea.split(",");
                     String[] u = p[1].split(":");
                     

@@ -31,7 +31,7 @@ public class Administrador extends Usuario{
                 String linea;
                 
                 while((linea=bf.readLine())!=null){
-                    System.out.println(linea);
+                    
                     String[] p = linea.split(",");
                     
                     Administrador administrador = new Administrador(p[0],p[1]);
