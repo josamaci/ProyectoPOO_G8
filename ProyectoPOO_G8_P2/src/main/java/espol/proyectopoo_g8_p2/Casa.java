@@ -47,7 +47,7 @@ public class Casa {
     return residente;
     }
        
-       public static List<Casa> cargarCasa(){
+        public static List<Casa> cargarCasa(){
         
             String ruta = "casas.txt";
             List<Casa> casas = new ArrayList<>();
@@ -64,7 +64,7 @@ public class Casa {
                     String[] u = p[1].split(":");
                     
                     Ubicacion ubicacion = new Ubicacion(Double.valueOf(u[0]),Double.valueOf(u[1]));
-                    Casa casa = new Casa(p[0],ubicacion,p[2],p[3]);
+                    Casa casa = new Casa(p[0],ubicacion,p[1],p[2]);
                     casas.add(casa);
                 }
             } catch (IOException ex){
@@ -72,7 +72,7 @@ public class Casa {
                 ex.printStackTrace();
             }
         return casas;
-    }
+        }
        
     }
     
