@@ -7,16 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 public class Residente extends Usuario{
     private String correo;
-    private String casa;
+    private Casa casa;
     private GENERO genero;
     private String nombre;
-    private String vehiculo;
+    private Vehiculo vehiculo;
     private String cedula;
     private String pinAcceso;
     
         public Residente(String nombreUsuario, String contrasenia, String correo, 
-                String casa, String genero, String nombre, String vehiculo, String cedula, String pinAcceso){
+                Casa casa, String genero, String nombre, Vehiculo vehiculo, String cedula, String pinAcceso){
             super(nombreUsuario, contrasenia);
+            this.correo = correo;
+            this.casa = casa;
             this.genero = GENERO.valueOf(genero.toUpperCase());
             this.nombre = nombre;
             this.vehiculo = vehiculo;
@@ -52,13 +54,13 @@ public class Residente extends Usuario{
         public GENERO getGenero(){
             return genero;
         }
-        public String getCasa(){
+        public Casa getCasa(){
             return casa;
         }
         public String getNombre(){
             return nombre;
         }
-        public String getVehiculos(){
+        public Vehiculo getVehiculos(){
             return vehiculo;
         }
         public String getCedula(){
@@ -72,6 +74,8 @@ public class Residente extends Usuario{
         
             String ruta = "residentes.txt";
             List<Residente> residentes = new ArrayList<>();
+            List<Casa> casas = Casa.cargarCasa();
+            List<Vehiculo> vehiculos = Vehiculo.cargarVehiculos();            
             
             try(InputStream input = App.class.getResource(ruta).openStream();
                 BufferedReader bf = new BufferedReader(
@@ -83,12 +87,21 @@ public class Residente extends Usuario{
                     System.out.println(linea);
                     String[] p = linea.split(",");
                     
-                    Residente residente = new Residente(p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
-                    residentes.add(residente);
+                    Residente residente_sc = new Residente(p[0],p[1],p[2],null,p[4],p[5],null,p[7],p[8]);
+                    
+                    for (int i=0;i<casas.size();i++) {
+                        if(casas.get(i).getResidente().equals(residente_sc.getNombre())){             
+                            for(int j=0;j<vehiculos.size();j++){
+                                if(vehiculos.get(i).getPropietario().equals(residente_sc.getNombre())){
+                                    Residente residente = new Residente(p[0],p[1],p[2],casas.get(i),p[4],p[5],vehiculos.get(j),p[7],p[8]);
+                                    residentes.add(residente);
+                                }
+                            }                          
+                        }
+                    }
                 }
             } catch (IOException ex){
                 System.out.println("ERROR: No se pudo cargar la información de los residentes");
-                ex.printStackTrace();
             }
         return residentes;
     }
