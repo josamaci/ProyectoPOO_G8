@@ -32,7 +32,7 @@ public class Casa {
         this.manzana=manzana;
         this.coordenadas=coordenadas;
         this.villa=villa;
-        residente="";
+        residente=null;
     }
     public String getManzana(){
     return manzana;
@@ -64,7 +64,7 @@ public class Casa {
                     String[] u = p[1].split(":");
                     
                     Ubicacion ubicacion = new Ubicacion(Double.valueOf(u[0]),Double.valueOf(u[1]));
-                    Casa casa = new Casa(p[0],ubicacion,p[1],p[2]);
+                    Casa casa = new Casa(p[0],ubicacion,p[2],p[3]);
                     casas.add(casa);
                 }
             } catch (IOException ex){
