@@ -58,15 +58,23 @@ public class InicioSesionController implements Initializable {
         if(contrasenia.isBlank()){
         throw new NullPointerException();}
         
+        boolean c1 = false;
+        boolean c2 = false;
+        
         for(Residente r: PrincipalController.getResidentes()){
             if(r.getNombreUsuario().equals(usuario)){
+                c1= true;
                 if(r.getContrasenia().equals(contrasenia)){
+                    c2 = true;}
+            }}
+        
+            if(c1){
+                if(c2){
                     App.setRoot("vistaResidente");
-                }
-                else{
+                }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR, "CONTRASEÑA INCORRECTA");
                 alert.show();
-                textNombre.clear();
+                textContra.clear();
                 }
             }else{
             Alert alert = new Alert(Alert.AlertType.ERROR, "USUARIO NO ENCONTRADO");
@@ -74,7 +82,7 @@ public class InicioSesionController implements Initializable {
                 textNombre.clear();
                 textContra.clear();
             }
-        }
+        
         
         }catch(NullPointerException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR NINGUNO DE LOS CAMPOS EN BLANCO!");
