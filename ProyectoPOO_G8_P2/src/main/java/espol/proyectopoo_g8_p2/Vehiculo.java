@@ -58,4 +58,17 @@ public class Vehiculo {
             }
         return vehiculos;
     }
+    public String getNumMatricula(){
+        return numMatricula();
+    }
+    public String getNombrePropietario(){
+        return nombrePropietario;
+    }
+     public void setNumMatricula(String numero){
+         
+        numMatricula=numero;
+    }
+    public void setNombrePropietario(String nombre){
+        nombrePropietario=nombre
+    }
 }
