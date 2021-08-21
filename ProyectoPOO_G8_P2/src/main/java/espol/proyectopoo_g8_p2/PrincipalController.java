@@ -27,14 +27,13 @@ public class PrincipalController implements Initializable {
     @FXML
     private Button botonSimulacion;
     private static List<Casa> casas;
-    private static List<Usuario> usuarios;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        casas = Casa.cargarCasa();
-       usuarios = Usuario.cargarUsuario();
                }    
     
     @FXML
@@ -47,9 +46,6 @@ public class PrincipalController implements Initializable {
         App.setRoot("vistaSimulacion");
     }
     
-    public static List<Usuario> getUsuarios(){
-        return usuarios;
-    }
     
     public static List<Casa> getCasas(){
         return casas;

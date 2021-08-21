@@ -1,9 +1,16 @@
 package espol.proyectopoo_g8_p2;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 public class Residente extends Usuario{
     private String correo;
@@ -33,9 +40,6 @@ public class Residente extends Usuario{
 
         public void cambiarPin(String pinAcceso){
             this.pinAcceso = pinAcceso;
-        }
-        public String getPin(){
-            return pinAcceso;
         }
         public void registrarVehiculo(){
 
@@ -122,5 +126,34 @@ public class Residente extends Usuario{
         return residentes;
     }
        
+        public static Residente CambiarPinResidente(String pin, String usuario) throws IOException{
+            List <Residente> residentes = cargarResidente();
+            String ruta = "residentes.txt";
+            
+            Residente res=null;
+            for(Residente r:residentes){
+                if (r.getNombreUsuario().equals(usuario)){
+                    r.setPinAcceso(pin);
+                    res=r;
+                }
+            }
+            
+            
+            try(BufferedWriter bf = new BufferedWriter(new FileWriter(App.class.getResource(ruta).getFile(),false))){
+                for(Residente r:residentes){
+                    String line = r.getNombreUsuario()+","+r.getContrasenia()+","+r.getCorreo()+",casa,"+r.getGenero()
+                    +",vehiculo,"+r.getPinAcceso()+","+r.getCedula()+","+r.getPinAcceso();
+                    bf.write(line);
+                    bf.newLine();
+                }
+                bf.close();
+                
+            }catch (FileNotFoundException ex){
+                System.out.println("ERROR");
+            } catch (IOException ex){
+                System.out.println("ERROR");
+            } 
+          return res;  
+        }
  }
 

@@ -12,7 +12,7 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
-
+    private static Usuario u;
     private static Scene scene;
 
     @Override
@@ -39,4 +39,11 @@ public class App extends Application {
         launch();
     }
 
+    public static Usuario getUsuario(){
+        return u;
+    }
+    
+    public static void setUsuario(Usuario u){
+        App.u = u;
+    }
 }
