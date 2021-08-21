@@ -10,21 +10,21 @@ public class Residente extends Usuario{
     private Casa casa;
     private GENERO genero;
     private String nombre;
-    private Vehiculo vehiculo;
+    private ArrayList<Vehiculo> vehiculos ;
     private String cedula;
     private String pinAcceso;
     
         public Residente(String nombreUsuario, String contrasenia, String correo, 
-                Casa casa, String genero, String nombre, Vehiculo vehiculo, String cedula, String pinAcceso){
+                Casa casa, String genero, String nombre, String cedula, String pinAcceso){
             super(nombreUsuario, contrasenia);
             this.correo = correo;
             this.casa = casa;
             this.genero = GENERO.valueOf(genero.toUpperCase());
             this.nombre = nombre;
-            this.vehiculo = vehiculo;
             this.cedula = cedula;
             this.pinAcceso = pinAcceso;
-            this.casa= casa;
+           vehiculos = new ArrayList();
+            
         }
 
         public void mostrarInformacion(){
@@ -49,41 +49,7 @@ public class Residente extends Usuario{
         public void eliminarVisitante(){
 
         }
-        public String getCorreo(){
-            return correo;
-        }
-        public GENERO getGenero(){
-            return genero;
-        }
-        public Casa getCasa(){
-            return casa;
-        }
-        public String getNombre(){
-            return nombre;
-        }
-        public Vehiculo getVehiculos(){
-            return vehiculo;
-        }
-        public String getCedula(){
-            return cedula;
-        }
-        public String getPinAcceso(){
-            return pinAcceso;
-        }
-    public void setCorreo(String correo){
-            this.correo=correo;
-        }
-     
-        public void setNombre(String nombre){
-         this.nombre=nombre;
-        }
-     
-        public void setCedula(String cedula){
-            this.cedula=cedula;
-        }
-        public void setPinAcceso(String pinAcceso){
-            this.pinAcceso=pinAcceso;
-        }
+  
         
         public static List<Residente> cargarResidente(){
         
@@ -121,6 +87,45 @@ public class Residente extends Usuario{
             }
         return residentes;
     }
+          public String getCorreo(){
+            return correo;
+        }
+        public GENERO getGenero(){
+            return genero;
+        }
+        public Casa getCasa(){
+            return casa;
+        }
+        public String getNombre(){
+            return nombre;
+        }
+        public Vehiculo getVehiculo(){
+            return vehiculo;
+        }
+        public String getCedula(){
+            return cedula;
+        }
+        public String getPinAcceso(){
+            return pinAcceso;
+        }
+         public void setCorreo(String c){
+            correo=c;
+        }
+        public void setGenero(GENERO g){
+            return genero;
+        }
+        public void setCasa(Casa casa){
+            this.casa=casa;
+        }
+        public void setNombre(String nombre){
+            this.nombre=nombre;
+        }
+       public void setCedula(String cedula){
+            this.cedula=cedula;
+        }
+         public void setPinAcceso(String pinAcceso){
+            this.pinAcceso=pinAcceso;
+        }
        
  }
 
