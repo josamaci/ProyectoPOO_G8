@@ -25,13 +25,7 @@ public class Vehiculo {
         nombrePropietario = nombre;
     }
     
-    public String getNumMatricula(){
-        return numMatricula;
-    }
-    
-    public String getPropietario(){
-        return nombrePropietario;
-    }
+ 
     
     public static List<Vehiculo> cargarVehiculos(){
         
@@ -59,7 +53,7 @@ public class Vehiculo {
         return vehiculos;
     }
     public String getNumMatricula(){
-        return numMatricula();
+        return numMatricula;
     }
     public String getNombrePropietario(){
         return nombrePropietario;
