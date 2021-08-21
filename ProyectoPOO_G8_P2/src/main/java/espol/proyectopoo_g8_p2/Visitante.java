@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
     private int mzResidente;
     private int villaResidente;
     private LocalDateTime fechaIngreso;
-    public Visitante(String codigoAcceso,String nombreVisitante,String numcedula,int mzResidente,int villaResidente,LocalDateTime fechaIngreso){
-    codigoAcceso=this.codigoAcceso;
-    nombreVisitante=this.nombreVisitante;
-    numcedula=this.numcedula;
-    mzResidente=this.mzResidente;
-    villaResidente=this.villaResidente;
-    fechaIngreso=this.fechaIngreso;
+    public Visitante(String codigoAcceso,String nombreVisitante,String numcedula,int mzResidente,int villaResidente,int anio, int mes, int dia){
+    this.codigoAcceso=codigoAcceso;
+    this.nombreVisitante=nombreVisitante;
+    this.numcedula=numcedula;
+    this.mzResidente=mzResidente;
+    this.villaResidente=villaResidente=;
+    this.fechaIngreso = LocalDate.of(anio, mes, dia);
     }
     
     public void registrarVisita(String ca,String nv,int nc,int mz,int villa,LocalDateTime f){
@@ -53,8 +53,6 @@ import java.time.LocalDateTime;
         public void setVillaResidente(int villaResidente){
     villaResidente=this.villaResidente;
     } 
-        public void setFechaIngreso(LocalDateTime fechaIngreso){
-    fechaIngreso=this.fechaIngreso;
-    }
+      
 }
 
