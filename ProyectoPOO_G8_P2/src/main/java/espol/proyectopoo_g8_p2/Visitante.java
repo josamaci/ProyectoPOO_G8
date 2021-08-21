@@ -8,12 +8,13 @@ import java.time.LocalDateTime;
     private int mzResidente;
     private int villaResidente;
     private LocalDateTime fechaIngreso;
+    
     public Visitante(String codigoAcceso,String nombreVisitante,String numcedula,int mzResidente,int villaResidente,LocalDateTime fechaIngreso){
     this.codigoAcceso=codigoAcceso;
     this.nombreVisitante=nombreVisitante;
-    this.numcedula=numcedula;
+    this.numCedula=numcedula;
     this.mzResidente=mzResidente;
-    this.villaResidente=villaResidente=;
+    this.villaResidente=villaResidente;
     this.fechaIngreso = fechaIngreso;
     }
     
@@ -39,7 +40,7 @@ import java.time.LocalDateTime;
     return fechaIngreso;
     }
     public void setCodigoAcceso(String codigoAcceso){
-    codigoAcceso=this.codigoAcceso
+    codigoAcceso=this.codigoAcceso;
     }
         public void setNombreVisitante(String nombreVisitante){
     nombreVisitante=this.nombreVisitante;
