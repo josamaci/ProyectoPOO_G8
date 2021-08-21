@@ -40,19 +40,19 @@ import java.time.LocalDateTime;
     return fechaIngreso;
     }
     public void setCodigoAcceso(String codigoAcceso){
-    codigoAcceso=this.codigoAcceso;
+    this.codigo=AccesocodigoAcceso;
     }
         public void setNombreVisitante(String nombreVisitante){
-    nombreVisitante=this.nombreVisitante;
+    this.nombreVisitante=nombreVisitante;
     }
          public void setNumCedula(String numCedula){
-    numCedula=this.numCedula;
+    this.numCedula=numCedula;
     }
         public void setMzResidente(int mzResidente){
-    mzResidente=this.mzResidente;
+    this.mzResidente=mzResidente;
     } 
         public void setVillaResidente(int villaResidente){
-    villaResidente=this.villaResidente;
+    this.villaResidente=villaResidente;
     } 
       
 }
