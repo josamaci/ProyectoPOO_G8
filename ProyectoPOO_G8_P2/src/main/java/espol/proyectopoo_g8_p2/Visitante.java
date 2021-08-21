@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
     private LocalDateTime fechaIngreso;
     
     public void registrarVisita(String ca,String nv,int nc,int mz,int villa,LocalDateTime f){
-
+        
     }
 }
 
