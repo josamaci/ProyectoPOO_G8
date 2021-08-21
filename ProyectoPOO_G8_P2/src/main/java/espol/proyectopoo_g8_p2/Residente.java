@@ -24,6 +24,7 @@ public class Residente extends Usuario{
             this.vehiculo = vehiculo;
             this.cedula = cedula;
             this.pinAcceso = pinAcceso;
+            casa = new Casa();
         }
 
         public void mostrarInformacion(){
