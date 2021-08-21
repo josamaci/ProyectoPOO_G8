@@ -37,7 +37,8 @@ public class Residente extends Usuario{
         public String getPin(){
             return pinAcceso;
         }
-        public void registrarVehiculo(){
+        public void registrarVehiculo(Vehiculo vehiculo){
+            vehiculos.add(vehiculo);
 
         }
         public String registrarVisitante(){
