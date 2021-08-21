@@ -19,6 +19,13 @@ public abstract class Usuario {
     public String getContrasenia(){
         return contrasenia;
     }
+      public String setNombreUsuario(String nombre){
+        nombreUsuario=nombre;
+    }
+    
+    public String setContrasenia(String contra){
+        contrasenia=contra;
+    }
     
     public boolean equals(Usuario u){
         if (u.nombreUsuario.equals(nombreUsuario) && u.contrasenia.equals(contrasenia)){
