@@ -9,9 +9,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.proyectopoo_g8_p2.VistaAdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.proyectopoo_g8_p2.VistaAdminController">
    <center>
-      <Pane id="panelMapa" fx:id="panelMapa" prefHeight="200.0" prefWidth="200.0" stylesheets="@vistaadmin.css" BorderPane.alignment="CENTER" />
+      <Pane id="panelMapa" fx:id="panelMapa" prefHeight="200.0" prefWidth="200.0" stylesheets="@vistaadmin.css" BorderPane.alignment="CENTER">
+         <children>
+            <Button alignment="CENTER_RIGHT" layoutX="641.0" layoutY="583.0" mnemonicParsing="false" onAction="#regresarInicioSesion" text="Salir">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children></Pane>
    </center>
    <top>
       <VBox prefHeight="50.0" prefWidth="50.0" BorderPane.alignment="CENTER">
@@ -38,14 +45,6 @@
                      <font>
                         <Font name="Consolas" size="15.0" />
                      </font>
-                  </Button>
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#regresarInicioSesion" text="Salir">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="350.0" />
-                     </HBox.margin>
                   </Button>
                </children>
             </HBox>
