@@ -96,7 +96,6 @@ public class Residente extends Usuario{
                     String[] p = linea.split(",");
                     
                     Residente residente = new Residente(p[0],p[1],p[2],null,p[4],p[5],null,p[7],p[8]);
-                    
                     for (int i=0;i<casas.size();i++) {
                         if(casas.get(i).getResidente().equals(residente.getNombre())){             
                             residente = new Residente(p[0],p[1],p[2],casas.get(i),p[4],p[5],null,p[7],p[8]);

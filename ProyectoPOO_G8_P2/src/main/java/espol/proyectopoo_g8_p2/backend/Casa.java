@@ -56,12 +56,12 @@ public class Casa {
                     String[] u = p[1].split(":");
                     
                     Ubicacion ubicacion = new Ubicacion(Double.valueOf(u[0]),Double.valueOf(u[1]));
-                    Casa casa = new Casa(p[0],ubicacion,p[2],null);
+                    Casa casa = new Casa(p[0],ubicacion,p[2],p[3]);
                     casas.add(casa);
                 }
             } catch (IOException ex){
                 System.out.println("ERROR: No se pudo cargar la información de las casas");
-                ex.printStackTrace();
+
             }
         return casas;
         }
