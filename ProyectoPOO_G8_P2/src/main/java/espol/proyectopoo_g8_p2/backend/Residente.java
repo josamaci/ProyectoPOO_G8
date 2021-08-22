@@ -5,6 +5,7 @@ import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -80,14 +82,13 @@ public class Residente extends Usuario{
         
         public static List<Residente> cargarResidente(){
         
-            String ruta = "residentes.txt";
+            String ruta = "src/main/resources/espol/proyectopoo_g8_p2/residentes.txt";
             List<Residente> residentes = new ArrayList<>();
             List<Casa> casas = Casa.cargarCasa();
             List<Vehiculo> vehiculos = Vehiculo.cargarVehiculos();            
-            
-            try(InputStream input = App.class.getResource(ruta).openStream();
-                BufferedReader bf = new BufferedReader(
-                                    new InputStreamReader(input,"UTF-8"))){
+            Charset c = Charset.forName("UTF-8");
+            try(BufferedReader bf = new BufferedReader(
+                                    new FileReader(ruta,c))){
                 
                 String linea;
                 
@@ -153,30 +154,30 @@ public class Residente extends Usuario{
        
         public static Residente CambiarPinResidente(String pin, String usuario) throws IOException{
             List <Residente> residentes = cargarResidente();
-            String ruta = "residentes.txt";
+            String ruta = "src/main/resources/espol/proyectopoo_g8_p2/residentes.txt";
             
             Residente res=null;
             for(Residente r:residentes){
                 if (r.getNombreUsuario().equals(usuario)){
                     r.setPinAcceso(pin);
                     res=r;
+                    System.out.println(res.getPinAcceso());
                 }
             }
             
-            
-            try(BufferedWriter bf = new BufferedWriter(new FileWriter(App.class.getResource(ruta).getFile(),false))){
+            try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta))){
                 for(Residente r:residentes){
                     String line = r.getNombreUsuario()+","+r.getContrasenia()+","+r.getCorreo()+",casa,"+r.getGenero()
                     +",vehiculo,"+r.getPinAcceso()+","+r.getCedula()+","+r.getPinAcceso();
                     bf.write(line);
                     bf.newLine();
+                    
                 }
-                bf.close();
-                
+                                
             }catch (FileNotFoundException ex){
-                System.out.println("ERROR");
+                System.out.println("ERROR File");
             } catch (IOException ex){
-                System.out.println("ERROR");
+                System.out.println("ERROR IO");
             } 
           return res;  
         }

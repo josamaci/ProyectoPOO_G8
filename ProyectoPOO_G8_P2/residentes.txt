@@ -1,2 +1,0 @@
-jmaci,JMaci,josamaci@espol.edu.ec,casa,MASCULINO,ABC,1223,1234567890,1223
-ridumoli,Ridumoli,ridumoli@espol.edu.ec,casa,MASCULINO,DEF,5678,0987654321,5678
