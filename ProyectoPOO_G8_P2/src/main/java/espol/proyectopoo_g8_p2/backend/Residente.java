@@ -82,9 +82,7 @@ public class Residente extends Usuario{
             vehiculos.add(vehiculo);
         }
         
-        public String registrarVisitante(){
-            return "";
-        }
+        
         public void listaVisitantes(){
 
         }
