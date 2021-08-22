@@ -17,6 +17,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 public class Residente extends Usuario{
     private String correo;
     private Casa casa;
@@ -25,6 +26,7 @@ public class Residente extends Usuario{
     private ArrayList<Vehiculo> vehiculos ;
     private String cedula;
     private String pinAcceso;
+    private ArrayList<Visitante> vistantes;
     
         public Residente(String nombreUsuario, String contrasenia, String correo, 
                 Casa casa, String genero, String nombre, String cedula, String pinAcceso){
@@ -51,6 +53,17 @@ public class Residente extends Usuario{
             this.vehiculos = vehiculos;
             
         }
+    public void registrarVisitante(){
+    char [] chars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
+    int charsLength = chars.length;
+    Random random = new Random();
+    StringBuffer buffer = new StringBuffer();
+    for (int i=0;i<8;i++){
+    buffer.append(chars[random.nextInt(charsLength)]);
+}   
+    String codigo=buffer.toString()
+    Visitante visitante=new Visitante();
+    }
 
         public void mostrarInformacion(){
 
