@@ -6,11 +6,15 @@
 package espol.proyectopoo_g8_p2;
 
 import espol.proyectopoo_g8_p2.backend.Residente;
+import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import espol.proyectopoo_g8_p2.backend.Visitante;
 import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
 import espol.proyectopoo_g8_p2.excepciones.PinException;
+import espol.proyectopoo_g8_p2.excepciones.VehiculoException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -100,6 +104,18 @@ public class VistaResidenteController implements Initializable {
         lblCedula.setText(r.getCedula());
         lblPin.setText(r.getPinAcceso());
         
+        List<Vehiculo> vehiculos = Vehiculo.cargarVehiculos();
+        
+        int x=0;
+        int y=0;
+        for(Vehiculo v:vehiculos){
+            if(v.getNombrePropietario().equals(lblNombre.getText())){
+                Label lbl= new Label();
+                lbl.setText(v.getNumMatricula());
+                gridVehiculo.add(lbl,y,x);
+                x++;
+            }
+        }
     }    
 
     @FXML
@@ -125,6 +141,8 @@ public class VistaResidenteController implements Initializable {
             
             Residente r = Residente.CambiarPinResidente(pin, App.getUsuario().getNombreUsuario());
             lblPin.setText(r.getPinAcceso());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Se ha cambiado su pin de acceso.");
+            alert.show();
             
         }catch(PinException e){
             if (pin.equals(lblPin.getText())){
@@ -149,7 +167,44 @@ public class VistaResidenteController implements Initializable {
     }
 
     @FXML
-    private void registrarVehiculo(MouseEvent event) {
+    private void registrarVehiculo(MouseEvent event) throws VehiculoException, EnBlancoException, IOException{
+        try{
+        String mat = txtVehiculo.getText();
+        if(mat.isBlank()){
+        throw new EnBlancoException();
+        }
+        
+        Vehiculo veh = new Vehiculo(mat,lblNombre.getText());
+        List<Vehiculo> vehiculos;
+        vehiculos = Vehiculo.cargarVehiculos();
+        int x=gridVehiculo.getRowCount();
+        int y=0;
+        for(Vehiculo v: vehiculos){
+            if(v.getNumMatricula().equals(mat)){
+                throw new VehiculoException();
+            }   
+        }    
+        Label lbl= new Label();
+        lbl.setText(veh.getNumMatricula());
+        gridVehiculo.add(lbl,y,x);
+        
+        Vehiculo.AgregarVehiculo(veh);
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Se ha agredado el vehículo.");
+            alert.show();
+        
+        }catch(EnBlancoException e){
+        Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR RL CAMPO EN BLANCO!");
+        alert.show();  
+        }catch(VehiculoException e){
+            txtVehiculo.clear();
+        Alert alert = new Alert(Alert.AlertType.ERROR, "¡LA MATRÍCULA YA ESTÁ REGISTRADA!");
+        alert.show();  
+        }catch (IOException ex){
+                System.out.println("ERROR IO");
+        }
+        
+        
     }
 
     @FXML

@@ -17,7 +17,9 @@ import java.time.LocalDateTime;
     this.villaResidente=villaResidente;
     this.fechaIngreso = fechaIngreso;
     }
+    public Visitante(){
     
+    }
     public void registrarVisita(String ca,String nv,int nc,int mz,int villa,LocalDateTime f){
         
     }
