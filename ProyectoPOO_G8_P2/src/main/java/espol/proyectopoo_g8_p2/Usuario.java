@@ -19,11 +19,12 @@ public abstract class Usuario {
     public String getContrasenia(){
         return contrasenia;
     }
-      public String setNombreUsuario(String nombre){
+    
+      public void setNombreUsuario(String nombre){
         nombreUsuario=nombre;
     }
     
-    public String setContrasenia(String contra){
+    public void setContrasenia(String contra){
         contrasenia=contra;
     }
     

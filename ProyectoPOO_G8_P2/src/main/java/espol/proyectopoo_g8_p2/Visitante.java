@@ -40,7 +40,7 @@ import java.time.LocalDateTime;
     return fechaIngreso;
     }
     public void setCodigoAcceso(String codigoAcceso){
-    this.codigo=AccesocodigoAcceso;
+    this.codigoAcceso = codigoAcceso;
     }
         public void setNombreVisitante(String nombreVisitante){
     this.nombreVisitante=nombreVisitante;

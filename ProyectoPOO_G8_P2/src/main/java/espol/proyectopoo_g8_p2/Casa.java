@@ -21,7 +21,7 @@ public class Casa {
      
      */
     
-    public Casa(String manzana,Ubicacion coordenadas,String villa,String residente){
+    public Casa(String manzana,Ubicacion coordenadas,String villa,Residente residente){
         this.manzana=manzana;
         this.coordenadas=coordenadas;
         this.villa=villa;
@@ -53,7 +53,7 @@ public class Casa {
                     String[] u = p[1].split(":");
                     
                     Ubicacion ubicacion = new Ubicacion(Double.valueOf(u[0]),Double.valueOf(u[1]));
-                    Casa casa = new Casa(p[0],ubicacion,p[2],p[3]);
+                    Casa casa = new Casa(p[0],ubicacion,p[2],null);
                     casas.add(casa);
                 }
             } catch (IOException ex){
@@ -71,7 +71,7 @@ public class Casa {
       public String getVilla(){
     return villa;
     }
-       public String getResidente(){
+       public Residente getResidente(){
     return residente;
     }
        public void setManzana(String manzana){
@@ -80,7 +80,7 @@ public class Casa {
      public void setCoordenadas(Ubicacion u){
    coordenadas=u;
     }
-     public String setVilla(String villa){
+     public void setVilla(String villa){
     this.villa=villa;
     }
     

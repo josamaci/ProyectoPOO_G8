@@ -63,6 +63,6 @@ public class Vehiculo {
         numMatricula=numero;
     }
     public void setNombrePropietario(String nombre){
-        nombrePropietario=nombre
+        nombrePropietario=nombre;
     }
 }
