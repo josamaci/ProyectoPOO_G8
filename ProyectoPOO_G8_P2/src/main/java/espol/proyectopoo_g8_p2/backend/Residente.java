@@ -60,8 +60,6 @@ public class Residente extends Usuario{
             this.pinAcceso = pinAcceso;
         }
 
-        public void registrarVehiculo(){}
-
         public String getPin(){
             return pinAcceso;
         }
@@ -91,27 +89,29 @@ public class Residente extends Usuario{
                                     new FileReader(ruta,c))){
                 
                 String linea;
+                Casa casa =new Casa();
                 
                 while((linea=bf.readLine())!=null){
                     System.out.println(linea);
                     String[] p = linea.split(",");
-                    
-                    Residente residente = new Residente(p[0],p[1],p[2],null,p[4],p[6],null,p[7],p[8]);
-                    for (int i=0;i<casas.size();i++) {
-                        if(casas.get(i).getResidente().equals(residente.getNombre())){             
-                            residente = new Residente(p[0],p[1],p[2],casas.get(i),p[4],p[6],null,p[7],p[8]);
-                            for(int j=0;j<vehiculos.size();j++){
-                                if(vehiculos.get(j).getNombrePropietario().equals(residente.getNombre())){
-                                    residente = new Residente(p[0],p[1],p[2],casas.get(i),p[4],p[6],null,p[7],p[8]);
-                                    residentes.add(residente);
-                                } 
-                            }
+                    for(Casa ca:casas){
+                        if(ca.getResidente().equals(p[4])){
+                            casa=ca;
                         }
                     }
+                    Residente residente = new Residente(p[0],p[1],p[2],casa,p[3],p[4],p[5],p[6]);
+                    
+                    for(Vehiculo v:vehiculos){
+                        if(v.getNombrePropietario().equals(residente.getNombre())){
+                            residente.registrarVehiculo(v);
+                        }
+                    }
+                    residentes.add(residente);
                 }
             } catch (IOException ex){
                 System.out.println("ERROR: No se pudo cargar la información de los residentes");
             }
+        System.out.println(residentes);    
         return residentes;
     }
           public String getCorreo(){
@@ -167,8 +167,8 @@ public class Residente extends Usuario{
             
             try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta))){
                 for(Residente r:residentes){
-                    String line = r.getNombreUsuario()+","+r.getContrasenia()+","+r.getCorreo()+",casa,"+r.getGenero()
-                    +",vehiculo,"+r.getNombre()+","+r.getCedula()+","+r.getPinAcceso();
+                    String line = r.getNombreUsuario()+","+r.getContrasenia()+","+r.getCorreo()+","+r.getGenero()
+                    +","+r.getNombre()+","+r.getCedula()+","+r.getPinAcceso();
                     bf.write(line);
                     bf.newLine();
                     

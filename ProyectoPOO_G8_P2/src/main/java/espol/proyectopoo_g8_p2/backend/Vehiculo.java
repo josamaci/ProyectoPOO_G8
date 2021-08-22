@@ -6,7 +6,11 @@
 package espol.proyectopoo_g8_p2.backend;
 
 import espol.proyectopoo_g8_p2.App;
+import static espol.proyectopoo_g8_p2.backend.Residente.cargarResidente;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -66,4 +70,23 @@ public class Vehiculo {
     public void setNombrePropietario(String nombre){
         nombrePropietario=nombre;
     }
+    
+    public static void AgregarVehiculo(Vehiculo veh) throws IOException{
+            List <Vehiculo> vehiculos = cargarVehiculos();
+            String ruta = "src/main/resources/espol/proyectopoo_g8_p2/vehiculos.txt";
+            vehiculos.add(veh);
+            try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta))){
+            for(Vehiculo v: vehiculos){
+                    String line = v.getNumMatricula()+","+v.getNombrePropietario();
+                    bf.write(line);
+                    bf.newLine();
+                }
+                                
+            }catch (FileNotFoundException ex){
+                System.out.println("ERROR File");
+            } catch (IOException ex){
+                System.out.println("ERROR IO");
+            }
+            
+        }
 }

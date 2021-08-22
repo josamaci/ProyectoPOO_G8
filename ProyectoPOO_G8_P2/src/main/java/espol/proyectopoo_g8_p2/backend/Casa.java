@@ -37,7 +37,9 @@ public class Casa {
         this.villa=villa;
         residente="";
     }
- 
+    public Casa(){
+    }
+    
        
         public static List<Casa> cargarCasa(){
         

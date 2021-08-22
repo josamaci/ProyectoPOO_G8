@@ -187,7 +187,7 @@
                               <Insets left="15.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <GridPane fx:id="gridVehiculo" prefHeight="504.0" prefWidth="640.0">
+                        <GridPane fx:id="gridVehiculo" prefHeight="416.0" prefWidth="640.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
@@ -207,7 +207,7 @@
                                     <Font name="System Bold Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <HBox alignment="CENTER" prefHeight="15.0" prefWidth="480.0">
+                              <HBox alignment="TOP_CENTER" prefHeight="15.0" prefWidth="480.0">
                                  <children>
                                     <Label alignment="CENTER" text="Ingrese matrícula del nuevo vehículo:">
                                        <font>
