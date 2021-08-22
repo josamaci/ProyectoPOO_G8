@@ -61,8 +61,8 @@ public class Residente extends Usuario{
     for (int i=0;i<8;i++){
     buffer.append(chars[random.nextInt(charsLength)]);
 }   
-    String codigo=buffer.toString()
-    Visitante visitante=new Visitante();
+    String codigo=buffer.toString();
+    Visitante visitante = new Visitante();
     }
 
         public void mostrarInformacion(){
