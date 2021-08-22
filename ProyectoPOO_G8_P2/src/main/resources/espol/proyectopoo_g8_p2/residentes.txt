@@ -1,2 +1,2 @@
-jmaci,JMaci,josamaci@espol.edu.ec,casa,MASCULINO,vehiculo,1231,1234567890,1231
-ridumoli,Ridumoli,ridumoli@espol.edu.ec,casa,MASCULINO,vehiculo,5678,0987654321,5678
+jmaci,JMaci,josamaci@espol.edu.ec,casa,MASCULINO,vehiculo,jose macias,1234567890,1111
+ridumoli,Ridumoli,ridumoli@espol.edu.ec,casa,MASCULINO,vehiculo,ricardo molina,0987654321,5678

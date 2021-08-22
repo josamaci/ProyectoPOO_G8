@@ -93,16 +93,16 @@ public class Residente extends Usuario{
                 String linea;
                 
                 while((linea=bf.readLine())!=null){
-                    
+                    System.out.println(linea);
                     String[] p = linea.split(",");
                     
-                    Residente residente = new Residente(p[0],p[1],p[2],null,p[4],p[5],null,p[7],p[8]);
+                    Residente residente = new Residente(p[0],p[1],p[2],null,p[4],p[6],null,p[7],p[8]);
                     for (int i=0;i<casas.size();i++) {
                         if(casas.get(i).getResidente().equals(residente.getNombre())){             
-                            residente = new Residente(p[0],p[1],p[2],casas.get(i),p[4],p[5],null,p[7],p[8]);
+                            residente = new Residente(p[0],p[1],p[2],casas.get(i),p[4],p[6],null,p[7],p[8]);
                             for(int j=0;j<vehiculos.size();j++){
                                 if(vehiculos.get(j).getNombrePropietario().equals(residente.getNombre())){
-                                    residente = new Residente(p[0],p[1],p[2],casas.get(i),p[4],p[5],null,p[7],p[8]);
+                                    residente = new Residente(p[0],p[1],p[2],casas.get(i),p[4],p[6],null,p[7],p[8]);
                                     residentes.add(residente);
                                 } 
                             }
@@ -168,7 +168,7 @@ public class Residente extends Usuario{
             try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta))){
                 for(Residente r:residentes){
                     String line = r.getNombreUsuario()+","+r.getContrasenia()+","+r.getCorreo()+",casa,"+r.getGenero()
-                    +",vehiculo,"+r.getPinAcceso()+","+r.getCedula()+","+r.getPinAcceso();
+                    +",vehiculo,"+r.getNombre()+","+r.getCedula()+","+r.getPinAcceso();
                     bf.write(line);
                     bf.newLine();
                     

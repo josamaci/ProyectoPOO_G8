@@ -38,9 +38,6 @@ public abstract class Usuario {
     public static List<Usuario> cargarUsuario(){
         List<Usuario> usuarios = new ArrayList<>();
         usuarios.addAll(Residente.cargarResidente());
-        List<Residente>residentes = Residente.cargarResidente();
-        for (Usuario usuario: residentes)
-            System.out.println(usuario.getNombreUsuario()+" "+usuario.getContrasenia());
         usuarios.addAll(Administrador.cargarAdmin());
         for (Usuario usuario: usuarios)
             System.out.println(usuario.getNombreUsuario()+" "+usuario.getContrasenia());
