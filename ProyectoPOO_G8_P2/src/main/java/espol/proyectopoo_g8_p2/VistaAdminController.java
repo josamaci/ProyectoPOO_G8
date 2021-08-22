@@ -53,7 +53,8 @@ public class VistaAdminController implements Initializable {
     private double NodeY;
     private VBox datosResidente;
     private Label nombre;
-
+    private Casa casaSeleccionada;
+    
     @FXML
     private Pane panelMapa;
     /**
@@ -119,6 +120,13 @@ public class VistaAdminController implements Initializable {
                 c.getCoordenadas().setY(r.getLayoutY());
                 
             });
+            
+            EventHandler eventHandler = (event)->{
+                casaSeleccionada = c;
+            };
+            
+            r.setOnMouseClicked(eventHandler);
+            
         }
     }
             

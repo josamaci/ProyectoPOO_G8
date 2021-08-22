@@ -11,7 +11,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.proyectopoo_g8_p2.VistaAdminController">
    <center>
-      <Pane id="panelMapa" fx:id="panelMapa" prefHeight="200.0" prefWidth="200.0" stylesheets="@vistaadmin.css" BorderPane.alignment="CENTER">
+      <Pane id="panelMapa" fx:id="panelMapa" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../css/vistaadmin.css" BorderPane.alignment="CENTER">
          <children>
             <Button alignment="CENTER_RIGHT" layoutX="641.0" layoutY="583.0" mnemonicParsing="false" onAction="#regresarInicioSesion" text="Salir">
                <font>
