@@ -11,7 +11,7 @@ public class Casa {
     private String manzana;
     private Ubicacion coordenadas;
     private String villa;
-    private String residente;
+    private Residente residente;
      /**
      * Constructor para la clase Propiedad
      * @param manzana - Define la manzana 
@@ -21,7 +21,7 @@ public class Casa {
      
      */
     
-    public Casa(String manzana,Ubicacion coordenadas,String villa,String residente){
+    public Casa(String manzana,Ubicacion coordenadas,String villa,Residente residente){
         this.manzana=manzana;
         this.coordenadas=coordenadas;
         this.villa=villa;
@@ -34,18 +34,7 @@ public class Casa {
         this.villa=villa;
         residente=null;
     }
-    public String getManzana(){
-    return manzana;
-    }
-     public Ubicacion getCoordenadas(){
-    return coordenadas;
-    }
-      public String getVilla(){
-    return villa;
-    }
-       public String getResidente(){
-    return residente;
-    }
+ 
        
         public static List<Casa> cargarCasa(){
         
@@ -64,7 +53,7 @@ public class Casa {
                     String[] u = p[1].split(":");
                     
                     Ubicacion ubicacion = new Ubicacion(Double.valueOf(u[0]),Double.valueOf(u[1]));
-                    Casa casa = new Casa(p[0],ubicacion,p[2],p[3]);
+                    Casa casa = new Casa(p[0],ubicacion,p[2],null);
                     casas.add(casa);
                 }
             } catch (IOException ex){
@@ -73,6 +62,31 @@ public class Casa {
             }
         return casas;
         }
+       public String getManzana(){
+    return manzana;
+    }
+     public Ubicacion getCoordenadas(){
+    return coordenadas;
+    }
+      public String getVilla(){
+    return villa;
+    }
+       public Residente getResidente(){
+    return residente;
+    }
+       public void setManzana(String manzana){
+    this.manzana=manzana;
+    }
+     public void setCoordenadas(Ubicacion u){
+   coordenadas=u;
+    }
+     public void setVilla(String villa){
+    this.villa=villa;
+    }
+    
+       public void setResidente(Residente res){
+    residente=res;
+    }
        
     }
     

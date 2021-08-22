@@ -5,6 +5,7 @@
  */
 package espol.proyectopoo_g8_p2;
 
+import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +45,7 @@ public class InicioSesionController implements Initializable {
     }    
     
     @FXML
-    private void iniciarSesion(MouseEvent event) throws IOException{
+    private void iniciarSesion(MouseEvent event) throws IOException, EnBlancoException{
         String usuario="";
         String contrasenia="";   
         
@@ -52,32 +53,31 @@ public class InicioSesionController implements Initializable {
             
         usuario = textNombre.getText();
         if(usuario.isBlank()){
-        throw new NullPointerException();}
+        throw new EnBlancoException();}
 
         contrasenia = textContra.getText();
         if(contrasenia.isBlank()){
-        throw new NullPointerException();}
+        throw new EnBlancoException();}
         
         boolean c1 = false;
         boolean c2 = false;
-        Usuario encontrado=null;
         
-        for(Usuario u: PrincipalController.getUsuarios()){
+        for(Usuario u: Usuario.cargarUsuario()){
             
             if(u.getNombreUsuario().equals(usuario)){
                 c1= true;
 
                 if(u.getContrasenia().equals(contrasenia)){
                     c2 = true;
-                    encontrado = u;
+                    App.setUsuario(u);
                     }
             }}
-        if(encontrado instanceof Residente){
+        if(App.getUsuario() instanceof Residente){
             comprobarResidente(c1,c2);
         }else{comprobarAdmin(c1,c2);}
         
         
-        }catch(NullPointerException e){
+        }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR NINGUNO DE LOS CAMPOS EN BLANCO!");
         alert.show();
             
