@@ -5,6 +5,8 @@
  */
 package espol.proyectopoo_g8_p2;
 
+import espol.proyectopoo_g8_p2.backend.Residente;
+import espol.proyectopoo_g8_p2.backend.Visitante;
 import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
 import espol.proyectopoo_g8_p2.excepciones.PinException;
 import java.io.IOException;

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.proyectopoo_g8_p2;
+package espol.proyectopoo_g8_p2.backend;
 
+import espol.proyectopoo_g8_p2.App;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

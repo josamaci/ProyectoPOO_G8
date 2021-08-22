@@ -1,4 +1,7 @@
-package espol.proyectopoo_g8_p2;
+package espol.proyectopoo_g8_p2.backend;
+import espol.proyectopoo_g8_p2.App;
+import espol.proyectopoo_g8_p2.backend.Usuario;
+import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;

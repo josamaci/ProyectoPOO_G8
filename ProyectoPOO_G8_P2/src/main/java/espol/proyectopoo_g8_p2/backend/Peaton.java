@@ -1,4 +1,4 @@
-package espol.proyectopoo_g8_p2;
+package espol.proyectopoo_g8_p2.backend;
 
 public class Peaton{
     private String numCedula;

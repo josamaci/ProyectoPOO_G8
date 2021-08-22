@@ -1,5 +1,6 @@
 package espol.proyectopoo_g8_p2;
 
+import espol.proyectopoo_g8_p2.backend.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

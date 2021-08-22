@@ -5,6 +5,7 @@
  */
 package espol.proyectopoo_g8_p2;
 
+import espol.proyectopoo_g8_p2.backend.Casa;
 import espol.proyectopoo_g8_p2.App;
 import java.io.IOException;
 import java.net.URL;

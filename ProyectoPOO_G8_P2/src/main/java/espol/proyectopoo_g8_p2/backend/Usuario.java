@@ -1,4 +1,4 @@
-package espol.proyectopoo_g8_p2;
+package espol.proyectopoo_g8_p2.backend;
 
 import java.util.ArrayList;
 import java.util.List;
