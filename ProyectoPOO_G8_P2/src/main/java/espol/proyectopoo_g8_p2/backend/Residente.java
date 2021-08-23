@@ -65,7 +65,7 @@ public class Residente extends Usuario{
     String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
     try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta))){
             
-                    String line = nombre+","+numcedula+","+correo+","+anio+"-"+mes+"-"+dia+"T10"+":"+hora+":"+"minuto";
+                    String line = nombre+","+numcedula+","+correo+","+anio+"-"+mes+"-"+dia+"T10"+":"+hora+":"+"minuto"+","+codigo;
                     bf.write(line);
                     bf.newLine();
                 
