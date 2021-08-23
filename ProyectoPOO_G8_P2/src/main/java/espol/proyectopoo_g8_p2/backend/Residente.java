@@ -53,25 +53,34 @@ public class Residente extends Usuario{
             this.vehiculos = vehiculos;
             
         }
-    public void registrarVisitante(){
+    public void registrarVisitante(String nombre,String numcedula,String correo,String anio,String mes,String dia,String hora,String minuto){
     char [] chars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
     int charsLength = chars.length;
     Random random = new Random();
     StringBuffer buffer = new StringBuffer();
     for (int i=0;i<8;i++){
     buffer.append(chars[random.nextInt(charsLength)]);
-}   
+}  
     String codigo=buffer.toString();
-    Visitante visitante = new Visitante();
+    String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+    try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta))){
+            
+                    String line = nombre+","+numcedula+","+correo+","+anio+"-"+mes+"-"+dia+"T10"+":"+hora+":"+"minuto";
+                    bf.write(line);
+                    bf.newLine();
+                
+                                
+            }catch (FileNotFoundException ex){
+                System.out.println("ERROR File");
+            } catch (IOException ex){
+                System.out.println("ERROR IO");
+            }
     }
 
         public void mostrarInformacion(){
 
         }
 
-        public void cambiarPin(String pinAcceso){
-            this.pinAcceso = pinAcceso;
-        }
 
         public String getPin(){
             return pinAcceso;
