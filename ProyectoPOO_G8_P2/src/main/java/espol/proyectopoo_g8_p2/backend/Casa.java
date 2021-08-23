@@ -9,7 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
+//comentario
 public class Casa {
     private String manzana;
     private Ubicacion coordenadas;
