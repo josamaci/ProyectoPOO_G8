@@ -122,7 +122,6 @@ public class VistaResidenteController implements Initializable {
                 x++;
             }
         }
-        ComboDiaVisita.setDisable(true);
         
         for(int i=0; i<5; i++){
         ComboAnioVisita.getItems().add(LocalDateTime.now().getYear()+i);}
