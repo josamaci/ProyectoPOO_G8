@@ -9,13 +9,18 @@ import espol.proyectopoo_g8_p2.backend.Residente;
 import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import espol.proyectopoo_g8_p2.backend.Visitante;
 import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
+import espol.proyectopoo_g8_p2.excepciones.FechaException;
 import espol.proyectopoo_g8_p2.excepciones.PinException;
 import espol.proyectopoo_g8_p2.excepciones.VehiculoException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -79,17 +84,18 @@ public class VistaResidenteController implements Initializable {
     @FXML
     private TextField txtCorreoVisitante;
     @FXML
-    private TextField txtAnioVisita;
-    @FXML
-    private ComboBox<String> ComboMesVisita;
-    @FXML
-    private TextField txtDiaVisita;
+    private ComboBox<Integer> ComboMesVisita;
     @FXML
     private ComboBox<Integer> ComboHoraVisita;
     @FXML
     private ComboBox<Integer> ComboMinutoVisita;
     @FXML
     private TableView<Visitante> tableVisitante;
+    @FXML
+    private ComboBox<Integer> ComboAnioVisita;
+    private ComboBox<Integer> ComboDiaVisita;
+    @FXML
+    private TextField txtDiaVisitante;
     
     /**
      * Initializes the controller class.
@@ -116,6 +122,26 @@ public class VistaResidenteController implements Initializable {
                 x++;
             }
         }
+        ComboDiaVisita.setDisable(true);
+        
+        for(int i=0; i<5; i++){
+        ComboAnioVisita.getItems().add(LocalDateTime.now().getYear()+i);}
+        ComboAnioVisita.getSelectionModel().selectFirst();
+        
+        for(int i=1; i<=12; i++){
+        ComboMesVisita.getItems().add(i);}
+        ComboMesVisita.getSelectionModel().select(LocalDateTime.now().getMonth().getValue()-1);
+        
+        for(int i=1; i<=24; i++){
+        ComboHoraVisita.getItems().add(i);
+        ComboHoraVisita.getSelectionModel().select(LocalDateTime.now().getHour()-1);
+        }
+        
+        for(int i=1; i<=60; i++){
+        ComboMinutoVisita.getItems().add(i);}
+        ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute()-1);
+        
+        
     }    
 
     @FXML
@@ -194,7 +220,7 @@ public class VistaResidenteController implements Initializable {
             alert.show();
         
         }catch(EnBlancoException e){
-        Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR RL CAMPO EN BLANCO!");
+        Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR NINGÚN CAMPO EN BLANCO!");
         alert.show();  
         }catch(VehiculoException e){
             txtVehiculo.clear();
@@ -209,11 +235,82 @@ public class VistaResidenteController implements Initializable {
 
     @FXML
     private void ingresarVisita(MouseEvent event) {
-        List<Visitante> visitante = Visitante.
-        String nombreVisitante = txtNombreVisitante.getText();
-        String numCedula = txtCedulaVisitante.getText();
-        String correoVisitante = txtCorreoVisitante.getText();
-       
+        List<Visitante> visitante = Visitante.cargarVisitante();
+        String nombreVisitante;
+        String numCedula;
+        String correoVisitante;
+        LocalDateTime fecha;
+        
+        
+        try{
+        nombreVisitante = txtNombreVisitante.getText();
+        if(nombreVisitante.isBlank()){
+        throw new EnBlancoException();
+        }
+        numCedula = txtCedulaVisitante.getText();
+        if(numCedula.isBlank()){
+        throw new EnBlancoException();
+        }
+        correoVisitante = txtCorreoVisitante.getText();
+        if(correoVisitante.isBlank()){
+        throw new EnBlancoException();
+        }
+        
+        int anio = ComboAnioVisita.getValue();
+        int mes = ComboAnioVisita.getValue();
+        
+        if(txtDiaVisitante.getText().isBlank()){
+        throw new EnBlancoException();
+        }
+        
+        int dia = Integer.parseInt(txtDiaVisitante.getText());
+        if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
+            if (dia>31){
+                throw new FechaException();
+            }
+        }
+        
+        if(mes==4 || mes==6 || mes==9 || mes==11){
+            if (dia>30){
+                throw new FechaException();
+            }
+        }
+        
+        if(mes==2){
+            if (dia>28){
+                throw new FechaException();
+            }
+        }
+        
+        int hora = ComboHoraVisita.getValue();
+        int minuto = ComboMinutoVisita.getValue();
+        
+        fecha = LocalDateTime.of(anio,mes,dia,hora,minuto);
+        if (fecha.isBefore(LocalDateTime.now())){
+            throw new FechaException();
+        }
+        
+        Residente.registrarVisitante(nombreVisitante, numCedula, correoVisitante, lblManzana.getText(), lblVilla.getText(), fecha);
+        
+        }catch(EnBlancoException e){
+        Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR NINGÚN CAMPO EN BLANCO!");
+        alert.show();  
+        
+        }catch(NumberFormatException e){
+            txtDiaVisitante.clear();
+        Alert alert = new Alert(Alert.AlertType.ERROR, "¡DEBE INGRESAR NÚMEROS EL DIA!");
+        alert.show(); 
+        
+        }catch(FechaException e){
+            txtDiaVisitante.clear();
+        Alert alert = new Alert(Alert.AlertType.ERROR, "¡LA FECHA INGRESADA NO ES CORRECTA O ANTERIOR A LA FECHA ACTUAL!");
+        alert.show(); 
+        
+        
+        
+        }
+        
+        
     }
     
     

@@ -14,6 +14,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -53,7 +54,7 @@ public class Residente extends Usuario{
             this.vehiculos = vehiculos;
             
         }
-    public void registrarVisitante(String nombre,String numcedula,String correo,String mzResidente,String villaResidente, String anio,String mes,String dia,String hora,String minuto){
+    public static Visitante registrarVisitante(String nombre,String numcedula,String correo,String mzResidente,String villaResidente, LocalDateTime fecha){
     char [] chars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
     int charsLength = chars.length;
     Random random = new Random();
@@ -63,9 +64,9 @@ public class Residente extends Usuario{
 }  
     String codigo=buffer.toString();
     String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
-    try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta))){
+    try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta, true))){
             
-                    String line = codigo+","+nombre+","+numcedula+","+correo+","+mzResidente+","+villaResidente+","+anio+"-"+mes+"-"+dia+"-"+hora+"-"+minuto;
+                    String line = codigo+","+nombre+","+numcedula+","+correo+","+mzResidente+","+villaResidente+","+fecha.getYear()+"-"+fecha.getMonthValue()+"-"+fecha.getDayOfMonth()+"-"+fecha.getHour()+"-"+fecha.getMinute();
                     bf.write(line);
                     bf.newLine();
                 
@@ -75,6 +76,7 @@ public class Residente extends Usuario{
             } catch (IOException ex){
                 System.out.println("ERROR IO");
             }
+    return new Visitante(codigo,nombre,numcedula,correo,mzResidente,villaResidente,fecha);
     }
 
         public void mostrarInformacion(){

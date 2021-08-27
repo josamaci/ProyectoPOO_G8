@@ -68,10 +68,10 @@ import java.util.List;
         public String getNumCedula(){
     return numCedula;
     } 
-        public int getMzResidente(){
+        public String getMzResidente(){
     return mzResidente;
     } 
-        public int getVillaResidente(){
+        public String getVillaResidente(){
     return villaResidente;
     } 
         public LocalDateTime getFechaIngreso(){
@@ -86,10 +86,10 @@ import java.util.List;
          public void setNumCedula(String numCedula){
     this.numCedula=numCedula;
     }
-        public void setMzResidente(int mzResidente){
+        public void setMzResidente(String mzResidente){
     this.mzResidente=mzResidente;
     } 
-        public void setVillaResidente(int villaResidente){
+        public void setVillaResidente(String villaResidente){
     this.villaResidente=villaResidente;
     } 
       
