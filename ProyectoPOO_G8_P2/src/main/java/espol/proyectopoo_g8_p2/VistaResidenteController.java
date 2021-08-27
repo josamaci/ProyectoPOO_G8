@@ -209,6 +209,11 @@ public class VistaResidenteController implements Initializable {
 
     @FXML
     private void ingresarVisita(MouseEvent event) {
+        List<Visitante> visitante = Visitante.
+        String nombreVisitante = txtNombreVisitante.getText();
+        String numCedula = txtCedulaVisitante.getText();
+        String correoVisitante = txtCorreoVisitante.getText();
+       
     }
     
     

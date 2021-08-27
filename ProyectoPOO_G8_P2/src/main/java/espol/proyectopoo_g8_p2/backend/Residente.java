@@ -53,7 +53,7 @@ public class Residente extends Usuario{
             this.vehiculos = vehiculos;
             
         }
-    public void registrarVisitante(String nombre,String numcedula,String correo,String anio,String mes,String dia,String hora,String minuto){
+    public void registrarVisitante(String nombre,String numcedula,String correo,String mzResidente,String villaResidente, String anio,String mes,String dia,String hora,String minuto){
     char [] chars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
     int charsLength = chars.length;
     Random random = new Random();
@@ -65,7 +65,7 @@ public class Residente extends Usuario{
     String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
     try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta))){
             
-                    String line = nombre+","+numcedula+","+correo+","+anio+"-"+mes+"-"+dia+"T10"+":"+hora+":"+"minuto"+","+codigo;
+                    String line = codigo+","+nombre+","+numcedula+","+correo+","+mzResidente+","+villaResidente+","+anio+"-"+mes+"-"+dia+"-"+hora+"-"+minuto;
                     bf.write(line);
                     bf.newLine();
                 

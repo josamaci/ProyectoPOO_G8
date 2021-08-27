@@ -1,28 +1,64 @@
 package espol.proyectopoo_g8_p2.backend;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
     public class Visitante{
     private String codigoAcceso;
     private String nombreVisitante;
     private String numCedula;
-    private int mzResidente;
-    private int villaResidente;
+    private String mzResidente;
+    private String villaResidente;
     private LocalDateTime fechaIngreso;
+    private String correo;
     
-    public Visitante(String codigoAcceso,String nombreVisitante,String numcedula,int mzResidente,int villaResidente,LocalDateTime fechaIngreso){
+    public Visitante(String codigoAcceso,String nombreVisitante,String numCedula,String correo, String mzResidente,String villaResidente,LocalDateTime fechaIngreso){
     this.codigoAcceso=codigoAcceso;
     this.nombreVisitante=nombreVisitante;
-    this.numCedula=numcedula;
+    this.numCedula=numCedula;
     this.mzResidente=mzResidente;
     this.villaResidente=villaResidente;
     this.fechaIngreso = fechaIngreso;
+    this.correo = correo;
     }
+    
+    
     public Visitante(){
     
     }
-    public void registrarVisita(String ca,String nv,int nc,int mz,int villa,LocalDateTime f){
+    
+    
+    public static List<Visitante> cargarVisitante(){
         
-    }
+            String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+            List<Visitante> visitantes = new ArrayList<>();           
+            Charset c = Charset.forName("UTF-8");
+            try(BufferedReader bf = new BufferedReader(
+                                    new FileReader(ruta,c))){
+                
+                String linea;
+                
+                while((linea=bf.readLine())!=null){
+                    System.out.println(linea);
+                    String[] p = linea.split(",");
+                    String[] fecha = p[6].split("-");
+                    LocalDateTime lc = LocalDateTime.of(Integer.parseInt(fecha[0]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[2]), Integer.parseInt(fecha[3]), Integer.parseInt(fecha[4]));
+                    Visitante v = new Visitante(p[0],p[1],p[2],p[3],p[4],p[5], lc);
+                    visitantes.add(v);
+                }
+            } catch (IOException ex){
+                System.out.println("ERROR: No se pudo cargar la información de los residentes");
+            }
+        System.out.println(visitantes);    
+        return visitantes;
+    } 
+    
+    
     public String getCodigoAcceso(){
     return codigoAcceso;
     }
