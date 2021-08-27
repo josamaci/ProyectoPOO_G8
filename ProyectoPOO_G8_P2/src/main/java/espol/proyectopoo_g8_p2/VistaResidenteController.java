@@ -256,7 +256,7 @@ public class VistaResidenteController implements Initializable {
         }
         
         int anio = ComboAnioVisita.getValue();
-        int mes = ComboAnioVisita.getValue();
+        int mes = ComboMesVisita.getValue();
         
         if(txtDiaVisitante.getText().isBlank()){
         throw new EnBlancoException();
