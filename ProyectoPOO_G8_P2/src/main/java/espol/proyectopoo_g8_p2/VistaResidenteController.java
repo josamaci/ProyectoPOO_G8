@@ -9,7 +9,7 @@ import espol.proyectopoo_g8_p2.backend.Residente;
 import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import espol.proyectopoo_g8_p2.backend.Visitante;
 import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
-import espol.proyectopoo_g8_p2.excepciones.CorreoException;
+import espol.proyectopoo_g8_p2.excepciones.FechaException;
 import espol.proyectopoo_g8_p2.excepciones.PinException;
 import espol.proyectopoo_g8_p2.excepciones.VehiculoException;
 import java.io.IOException;
@@ -284,19 +284,19 @@ public class VistaResidenteController implements Initializable {
         int dia = Integer.parseInt(txtDiaVisitante.getText());
         if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12){
             if (dia>31){
-                throw new CorreoException();
+                throw new FechaException();
             }
         }
         
         if(mes==4 || mes==6 || mes==9 || mes==11){
             if (dia>30){
-                throw new CorreoException();
+                throw new FechaException();
             }
         }
         
         if(mes==2){
             if (dia>28){
-                throw new CorreoException();
+                throw new FechaException();
             }
         }
         
@@ -305,7 +305,7 @@ public class VistaResidenteController implements Initializable {
         
         fecha = LocalDateTime.of(anio,mes,dia,hora,minuto);
         if (fecha.isBefore(LocalDateTime.now())){
-            throw new CorreoException();
+            throw new FechaException();
         }
         
         Residente.registrarVisitante(nombreVisitante, numCedula, correoVisitante, lblManzana.getText(), lblVilla.getText(), fecha);
@@ -321,7 +321,7 @@ public class VistaResidenteController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡DEBE INGRESAR NÚMEROS EL DIA!");
         alert.show(); 
         
-        }catch(CorreoException e){
+        }catch(FechaException e){
             txtDiaVisitante.clear();
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡LA FECHA INGRESADA NO ES CORRECTA O ANTERIOR A LA FECHA ACTUAL!");
         alert.show(); 
