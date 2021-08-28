@@ -92,8 +92,12 @@ public class Casa {
        public void setResidente(String res){
     residente=res;
     }
-       
+    
+    public static List<Casa> listaCasa(){
+        List<Casa> casas = Casa.cargarCasa();
+        return casas;
     }
+}
     
     
 
