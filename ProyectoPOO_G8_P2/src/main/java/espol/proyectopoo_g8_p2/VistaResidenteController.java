@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -146,12 +147,19 @@ public class VistaResidenteController implements Initializable {
         ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute()-1);
         
         tableVisitante.setEditable(true);
+
+        /*colCod.setCellValueFactory(new PropertyValueFactory<>("Código"));
+        colNom.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        colCor.setCellValueFactory(new PropertyValueFactory<>("Correo"));
+        colMz.setCellValueFactory(new PropertyValueFactory<>("Manzana"));
+        colVil.setCellValueFactory(new PropertyValueFactory<>("Villa"));
+        colCed.setCellValueFactory(new PropertyValueFactory<>("Cédula"));
+        colFec.setCellValueFactory(new PropertyValueFactory<>("Fecha"));*/
         
+       
         
-        final ObservableList<Visitante> visitantes = FXCollections.observableArrayList();
-        visitantes.addAll(r.listaVisitantes());
-        tableVisitante.setItems(visitantes);
-        
+        final ObservableList<Visitante> visitantes = FXCollections.observableArrayList(r.listaVisitantes());
+        tableVisitante.getItems().addAll(visitantes);
     }    
 
     @FXML
@@ -177,7 +185,7 @@ public class VistaResidenteController implements Initializable {
             
             Residente r = Residente.CambiarPinResidente(pin, App.getUsuario().getNombreUsuario());
             lblPin.setText(r.getPinAcceso());
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Se ha cambiado su pin de acceso.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Se ha cambiado su pin de acceso.");
             alert.show();
             
         }catch(PinException e){
@@ -226,7 +234,7 @@ public class VistaResidenteController implements Initializable {
         
         Vehiculo.AgregarVehiculo(veh);
         
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Se ha agredado el vehículo.");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Se ha agredado el vehículo.");
             alert.show();
         
         }catch(EnBlancoException e){
@@ -301,6 +309,8 @@ public class VistaResidenteController implements Initializable {
         }
         
         Residente.registrarVisitante(nombreVisitante, numCedula, correoVisitante, lblManzana.getText(), lblVilla.getText(), fecha);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "SE HA REGISTRADO UNA NUEVA VISITA");
+        alert.show(); 
         
         }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR NINGÚN CAMPO EN BLANCO!");
