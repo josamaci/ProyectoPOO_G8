@@ -55,14 +55,30 @@ public class Residente extends Usuario{
             
         }
     public static Visitante registrarVisitante(String nombre,String numcedula,String correo,String mzResidente,String villaResidente, LocalDateTime fecha){
+    
+    List<Visitante> visitantes = Visitante.cargarVisitante();
     char [] chars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
     int charsLength = chars.length;
-    Random random = new Random();
-    StringBuffer buffer = new StringBuffer();
-    for (int i=0;i<8;i++){
-    buffer.append(chars[random.nextInt(charsLength)]);
-}  
-    String codigo=buffer.toString();
+    String codigo;
+    boolean c=false;
+    do{
+        Random random = new Random();
+        StringBuffer buffer = new StringBuffer();
+
+        for (int i=0;i<8;i++){
+        buffer.append(chars[random.nextInt(charsLength)]);
+            }  
+
+        codigo=buffer.toString();
+
+        for(int i=0; i<visitantes.size(); i++){
+            if (codigo.equals(visitantes.get(i).getCodigoAcceso())){
+                c = true;
+        }
+    }
+    }while(c);
+    
+    
     String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
     try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta, true))){
             
