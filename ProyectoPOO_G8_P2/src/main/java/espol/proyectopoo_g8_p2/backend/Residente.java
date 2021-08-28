@@ -126,7 +126,7 @@ public class Residente extends Usuario{
                     String[] fecha = p[6].split("-");
                     LocalDateTime lc = LocalDateTime.of(Integer.parseInt(fecha[0]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[2]), Integer.parseInt(fecha[3]), Integer.parseInt(fecha[4]));
                     Visitante v = new Visitante(p[0],p[1],p[2],p[3],p[4],p[5], lc);
-                    if(v.getMzResidente().equals(r.getCasa().getManzana()) && v.getMzResidente().equals(r.getCasa().getVilla())){
+                    if(v.getMzResidente().equals(r.getCasa().getManzana()) && v.getVillaResidente().equals(r.getCasa().getVilla())){
                     visitantes.add(v);
                     }
                 }
