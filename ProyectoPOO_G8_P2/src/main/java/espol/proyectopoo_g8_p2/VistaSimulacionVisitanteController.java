@@ -5,10 +5,18 @@
  */
 package espol.proyectopoo_g8_p2;
 
+import espol.proyectopoo_g8_p2.App;
+import espol.proyectopoo_g8_p2.App;
+import espol.proyectopoo_g8_p2.App;
+import espol.proyectopoo_g8_p2.App;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 /**
  * FXML Controller class
  *
@@ -16,6 +24,9 @@ import javafx.fxml.Initializable;
  */
 public class VistaSimulacionVisitanteController implements Initializable {
 
+
+    @FXML
+    private Button botRegresar;
     /**
      * Initializes the controller class.
      */
@@ -24,4 +35,9 @@ public class VistaSimulacionVisitanteController implements Initializable {
         // TODO
     }    
     
+    @FXML
+    private void volver(MouseEvent event) throws IOException {
+        App.setRoot("vistaSimulacion");
+    }
+
 }
