@@ -63,7 +63,7 @@ public class VistaAdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        List<Casa> casas = Casa.cargarCasa();
+        List<Casa> casas = Casa.listaCasa();
         for(Casa c: casas){
             Rectangle r = new Rectangle(50,50, Color.RED);
             //panelMapa.getChildren().addAll(r);
@@ -126,7 +126,30 @@ public class VistaAdminController implements Initializable {
             };
             
             r.setOnMouseClicked(eventHandler);
+                try{
+                        //1. create an FXMLLoader object and store in it the result of the statement
+                        FXMLLoader loader = new FXMLLoader(App.class.getResource("registarResidente.fxml"));
             
+                        //2. cargar la vista
+                        Parent viewAgradecimiento = loader.load();
+                
+                        //3. fijar el contenido en la scena
+                        App.setRoot(viewAgradecimiento);
+            
+                        //4. Obtener la instancia del contralodro asociado a la vista
+                        RegistrarResidenteController registroController 
+                        = loader.getController();
+            
+                        //5. Pasamos al infromacion al controlador
+                        registroController.setCasa(c);
+            
+                    }catch(IOException ex){
+                        //event -> es una referencia al evento que ocurrio
+                        //generar el nuevo contenido a partir de VistaAgredecimeinto.fxml
+                        
+                        System.out.println("No se ha podido cargar la vista");
+                        System.out.println("registarResidente.fxml");
+                    }
         }
     }
             
