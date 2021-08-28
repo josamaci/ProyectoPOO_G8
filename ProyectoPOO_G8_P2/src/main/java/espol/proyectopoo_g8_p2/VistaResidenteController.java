@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -44,27 +46,15 @@ public class VistaResidenteController implements Initializable {
     @FXML
     private Button botonCerrar;
     @FXML
-    private HBox vbnombre;
-    @FXML
     private Label lblNombre;
-    @FXML
-    private HBox vbCorreo;
     @FXML
     private Label lblCorreo;
     @FXML
-    private HBox vbVilla;
-    @FXML
     private Label lblVilla;
-    @FXML
-    private HBox vbManzana;
     @FXML
     private Label lblManzana;
     @FXML
-    private HBox vbCedula;
-    @FXML
     private Label lblCedula;
-    @FXML
-    private HBox vbPin;
     @FXML
     private Label lblPin;
     @FXML
@@ -140,7 +130,10 @@ public class VistaResidenteController implements Initializable {
         ComboMinutoVisita.getItems().add(i);}
         ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute()-1);
         
-        
+        final ObservableList<Visitante> visitantes = FXCollections.observableArrayList();
+        visitantes.addAll(r.listaVisitantes());
+        tableVisitante.setEditable(false);
+        tableVisitante.setItems(visitantes);
     }    
 
     @FXML
