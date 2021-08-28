@@ -27,7 +27,7 @@ public class Residente extends Usuario{
     private ArrayList<Vehiculo> vehiculos ;
     private String cedula;
     private String pinAcceso;
-    private ArrayList<Visitante> vistantes;
+    private ArrayList<Visitante> visitantes;
     
         public Residente(String nombreUsuario, String contrasenia, String correo, 
                 Casa casa, String genero, String nombre, String cedula, String pinAcceso){
@@ -55,14 +55,30 @@ public class Residente extends Usuario{
             
         }
     public static Visitante registrarVisitante(String nombre,String numcedula,String correo,String mzResidente,String villaResidente, LocalDateTime fecha){
+    
+    List<Visitante> visitantes = Visitante.cargarVisitante();
     char [] chars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
     int charsLength = chars.length;
-    Random random = new Random();
-    StringBuffer buffer = new StringBuffer();
-    for (int i=0;i<8;i++){
-    buffer.append(chars[random.nextInt(charsLength)]);
-}  
-    String codigo=buffer.toString();
+    String codigo;
+    boolean c=false;
+    do{
+        Random random = new Random();
+        StringBuffer buffer = new StringBuffer();
+
+        for (int i=0;i<8;i++){
+        buffer.append(chars[random.nextInt(charsLength)]);
+            }  
+
+        codigo=buffer.toString();
+
+        for(int i=0; i<visitantes.size(); i++){
+            if (codigo.equals(visitantes.get(i).getCodigoAcceso())){
+                c = true;
+        }
+    }
+    }while(c);
+    
+    
     String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
     try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta, true))){
             
@@ -79,9 +95,7 @@ public class Residente extends Usuario{
     return new Visitante(codigo,nombre,numcedula,correo,mzResidente,villaResidente,fecha);
     }
 
-        public void mostrarInformacion(){
-
-        }
+        
 
 
         public String getPin(){
@@ -92,8 +106,36 @@ public class Residente extends Usuario{
         }
         
         
-        public void listaVisitantes(){
+
         
+        
+
+     public List<Visitante> listaVisitantes(){
+     Residente r = (Residente)App.getUsuario();    
+     String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+            List<Visitante> visitantes = new ArrayList<>();           
+            Charset c = Charset.forName("UTF-8");
+            try(BufferedReader bf = new BufferedReader(
+                                    new FileReader(ruta,c))){
+                
+                String linea;
+                
+                while((linea=bf.readLine())!=null){
+                    System.out.println(linea);
+                    String[] p = linea.split(",");
+                    String[] fecha = p[6].split("-");
+                    LocalDateTime lc = LocalDateTime.of(Integer.parseInt(fecha[0]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[2]), Integer.parseInt(fecha[3]), Integer.parseInt(fecha[4]));
+                    Visitante v = new Visitante(p[0],p[1],p[2],p[3],p[4],p[5], lc);
+                    if(v.getMzResidente().equals(r.getCasa().getManzana()) && v.getVillaResidente().equals(r.getCasa().getVilla())){
+                    visitantes.add(v);
+                    }
+                }
+                
+            } catch (IOException ex){
+                System.out.println("ERROR: No se pudo cargar la información de los residentes");
+            }
+        return visitantes;
+
         }
         
         public void eliminarVisitante(){
