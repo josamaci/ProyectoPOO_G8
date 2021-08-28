@@ -30,6 +30,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -86,6 +87,20 @@ public class VistaResidenteController implements Initializable {
     private ComboBox<Integer> ComboDiaVisita;
     @FXML
     private TextField txtDiaVisitante;
+    @FXML
+    private TableColumn<?, ?> colCod;
+    @FXML
+    private TableColumn<?, ?> colNom;
+    @FXML
+    private TableColumn<?, ?> colCed;
+    @FXML
+    private TableColumn<?, ?> colCor;
+    @FXML
+    private TableColumn<?, ?> colMz;
+    @FXML
+    private TableColumn<?, ?> colVil;
+    @FXML
+    private TableColumn<?, ?> colFec;
     
     /**
      * Initializes the controller class.
@@ -130,10 +145,13 @@ public class VistaResidenteController implements Initializable {
         ComboMinutoVisita.getItems().add(i);}
         ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute()-1);
         
+        tableVisitante.setEditable(true);
+        
+        
         final ObservableList<Visitante> visitantes = FXCollections.observableArrayList();
         visitantes.addAll(r.listaVisitantes());
-        tableVisitante.setEditable(false);
         tableVisitante.setItems(visitantes);
+        
     }    
 
     @FXML

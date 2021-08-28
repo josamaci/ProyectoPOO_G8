@@ -132,7 +132,7 @@ public class Residente extends Usuario{
                 }
                 
             } catch (IOException ex){
-                System.out.println("ERROR: No se pudo cargar la información de los residentes");
+                System.out.println("ERROR: No se pudo cargar la información de los visitantes");
             }
         return visitantes;
 

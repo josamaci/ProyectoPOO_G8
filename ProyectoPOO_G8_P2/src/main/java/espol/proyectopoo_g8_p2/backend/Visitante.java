@@ -52,7 +52,7 @@ import java.util.List;
                     visitantes.add(v);
                 }
             } catch (IOException ex){
-                System.out.println("ERROR: No se pudo cargar la información de los residentes");
+                System.out.println("ERROR: No se pudo cargar la información de los visitantes");
             }
         System.out.println(visitantes);    
         return visitantes;
