@@ -93,8 +93,9 @@ public class Residente extends Usuario{
         
         
         public void listaVisitantes(){
-
+        
         }
+        
         public void eliminarVisitante(){
 
         }
