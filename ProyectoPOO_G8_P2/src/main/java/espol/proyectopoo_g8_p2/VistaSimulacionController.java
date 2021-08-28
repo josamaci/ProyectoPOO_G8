@@ -23,6 +23,10 @@ public class VistaSimulacionController implements Initializable {
 
     @FXML
     private Button botonRegresar;
+    @FXML
+    private Button botSimRes;
+    @FXML
+    private Button botSimVis;
     /**
      * Initializes the controller class.
      * @param url
@@ -36,6 +40,16 @@ public class VistaSimulacionController implements Initializable {
     @FXML
     private void regresarPrincipal(MouseEvent event) throws IOException {
         App.setRoot("principal");
+    }
+
+    @FXML
+    private void irSimulacionResidente(MouseEvent event) throws IOException{
+        App.setRoot("vistaSimulacionResidente");
+    }
+
+    @FXML
+    private void irSimulacionVisitante(MouseEvent event) throws IOException{
+        App.setRoot("vistaSimulacionVisitante");
     }
 
 }
