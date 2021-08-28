@@ -31,16 +31,15 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
     
-    public static void setRoot(Parent root) {
+    public static void setRoot(Parent root) throws Throwable{
         scene.setRoot(root);
     }
-/*
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-    */
-    public static Parent loadFXML(String fxmlfile) throws IOException {
+    
+    public static Parent loadFXML2(String fxmlfile) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxmlfile));
         return fxmlLoader.load();
     }

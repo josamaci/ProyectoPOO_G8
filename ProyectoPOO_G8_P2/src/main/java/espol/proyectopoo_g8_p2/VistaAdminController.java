@@ -149,7 +149,9 @@ public class VistaAdminController implements Initializable {
                         
                         System.out.println("No se ha podido cargar la vista");
                         System.out.println("registarResidente.fxml");
-                    }
+                    } catch (Throwable ex) {
+                ex.printStackTrace();
+            }
         }
     }
             
