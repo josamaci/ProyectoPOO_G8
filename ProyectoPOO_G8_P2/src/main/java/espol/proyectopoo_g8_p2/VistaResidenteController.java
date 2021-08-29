@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -28,8 +30,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -44,27 +48,15 @@ public class VistaResidenteController implements Initializable {
     @FXML
     private Button botonCerrar;
     @FXML
-    private HBox vbnombre;
-    @FXML
     private Label lblNombre;
-    @FXML
-    private HBox vbCorreo;
     @FXML
     private Label lblCorreo;
     @FXML
-    private HBox vbVilla;
-    @FXML
     private Label lblVilla;
-    @FXML
-    private HBox vbManzana;
     @FXML
     private Label lblManzana;
     @FXML
-    private HBox vbCedula;
-    @FXML
     private Label lblCedula;
-    @FXML
-    private HBox vbPin;
     @FXML
     private Label lblPin;
     @FXML
@@ -96,6 +88,20 @@ public class VistaResidenteController implements Initializable {
     private ComboBox<Integer> ComboDiaVisita;
     @FXML
     private TextField txtDiaVisitante;
+    @FXML
+    private TableColumn<?, ?> colCod;
+    @FXML
+    private TableColumn<?, ?> colNom;
+    @FXML
+    private TableColumn<?, ?> colCed;
+    @FXML
+    private TableColumn<?, ?> colCor;
+    @FXML
+    private TableColumn<?, ?> colMz;
+    @FXML
+    private TableColumn<?, ?> colVil;
+    @FXML
+    private TableColumn<?, ?> colFec;
     
     /**
      * Initializes the controller class.
@@ -140,7 +146,20 @@ public class VistaResidenteController implements Initializable {
         ComboMinutoVisita.getItems().add(i);}
         ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute()-1);
         
+        tableVisitante.setEditable(true);
+
+        /*colCod.setCellValueFactory(new PropertyValueFactory<>("Código"));
+        colNom.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        colCor.setCellValueFactory(new PropertyValueFactory<>("Correo"));
+        colMz.setCellValueFactory(new PropertyValueFactory<>("Manzana"));
+        colVil.setCellValueFactory(new PropertyValueFactory<>("Villa"));
+        colCed.setCellValueFactory(new PropertyValueFactory<>("Cédula"));
+        colFec.setCellValueFactory(new PropertyValueFactory<>("Fecha"));*/
         
+       
+        
+        final ObservableList<Visitante> visitantes = FXCollections.observableArrayList(r.listaVisitantes());
+        tableVisitante.getItems().addAll(visitantes);
     }    
 
     @FXML
@@ -166,7 +185,7 @@ public class VistaResidenteController implements Initializable {
             
             Residente r = Residente.CambiarPinResidente(pin, App.getUsuario().getNombreUsuario());
             lblPin.setText(r.getPinAcceso());
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Se ha cambiado su pin de acceso.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Se ha cambiado su pin de acceso.");
             alert.show();
             
         }catch(PinException e){
@@ -215,7 +234,7 @@ public class VistaResidenteController implements Initializable {
         
         Vehiculo.AgregarVehiculo(veh);
         
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Se ha agredado el vehículo.");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Se ha agredado el vehículo.");
             alert.show();
         
         }catch(EnBlancoException e){
@@ -290,6 +309,8 @@ public class VistaResidenteController implements Initializable {
         }
         
         Residente.registrarVisitante(nombreVisitante, numCedula, correoVisitante, lblManzana.getText(), lblVilla.getText(), fecha);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "SE HA REGISTRADO UNA NUEVA VISITA");
+        alert.show(); 
         
         }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR NINGÚN CAMPO EN BLANCO!");

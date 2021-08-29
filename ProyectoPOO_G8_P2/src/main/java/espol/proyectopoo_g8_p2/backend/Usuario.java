@@ -43,5 +43,20 @@ public abstract class Usuario {
             System.out.println(usuario.getNombreUsuario()+" "+usuario.getContrasenia());
         return usuarios;
     }
+    
+    public static List<Usuario> getListaUsuarios(){
+        List<Usuario> usuarios = Usuario.cargarUsuario();
+        return usuarios;
+    }
+  
+    public List<Usuario> nuevoUsuario(Usuario u){
+        List<Usuario> usuarios = Usuario.getListaUsuarios();
+        usuarios.add(u);
+        return usuarios;
+    }
+    
+    
+    
+    
 }
 

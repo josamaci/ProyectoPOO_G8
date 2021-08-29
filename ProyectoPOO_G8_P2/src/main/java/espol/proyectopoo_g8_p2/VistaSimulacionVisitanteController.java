@@ -5,6 +5,10 @@
  */
 package espol.proyectopoo_g8_p2;
 
+import espol.proyectopoo_g8_p2.App;
+import espol.proyectopoo_g8_p2.App;
+import espol.proyectopoo_g8_p2.App;
+import espol.proyectopoo_g8_p2.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,19 +22,13 @@ import javafx.scene.input.MouseEvent;
  *
  * @author JMaci
  */
-public class VistaSimulacionController implements Initializable {
+public class VistaSimulacionVisitanteController implements Initializable {
 
 
     @FXML
-    private Button botonRegresar;
-    @FXML
-    private Button botSimRes;
-    @FXML
-    private Button botSimVis;
+    private Button botRegresar;
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -38,18 +36,8 @@ public class VistaSimulacionController implements Initializable {
     }    
     
     @FXML
-    private void regresarPrincipal(MouseEvent event) throws IOException {
-        App.setRoot("principal");
-    }
-
-    @FXML
-    private void irSimulacionResidente(MouseEvent event) throws IOException{
-        App.setRoot("vistaSimulacionResidente");
-    }
-
-    @FXML
-    private void irSimulacionVisitante(MouseEvent event) throws IOException{
-        App.setRoot("vistaSimulacionVisitante");
+    private void volver(MouseEvent event) throws IOException {
+        App.setRoot("vistaSimulacion");
     }
 
 }

@@ -31,7 +31,7 @@
                                     <Font name="System Bold Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <HBox fx:id="vbnombre" alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
+                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
                                  <children>
                                     <Label text="Nombre: ">
                                        <font>
@@ -51,7 +51,7 @@
                                     <Insets bottom="10.0" left="30.0" right="30.0" top="30.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox fx:id="vbCorreo" alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
+                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
                                  <children>
                                     <Label text="Correo:">
                                        <font>
@@ -71,7 +71,7 @@
                                     <Insets bottom="10.0" left="30.0" right="30.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox fx:id="vbVilla" alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
+                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
                                  <children>
                                     <Label text="Villa:">
                                        <font>
@@ -91,7 +91,7 @@
                                     <Insets bottom="10.0" left="30.0" right="30.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox fx:id="vbManzana" alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
+                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
                                  <children>
                                     <Label text="Manzana:">
                                        <font>
@@ -111,7 +111,7 @@
                                     <Insets bottom="10.0" left="30.0" right="30.0" />
                                  </VBox.margin>
                               </HBox>
-                              <HBox fx:id="vbCedula" alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
+                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
                                  <children>
                                     <Label text="Cédula:">
                                        <font>
@@ -135,7 +135,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="371.0" prefWidth="301.0">
                            <children>
-                              <HBox fx:id="vbPin" alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
+                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="240.0">
                                  <children>
                                     <Label text="Pin:">
                                        <font>
@@ -404,7 +404,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Label text="Lista de Visistantes">
+                        <Label text="Lista de Visitantes">
                            <font>
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
@@ -417,8 +417,13 @@
                         </Label>
                         <TableView fx:id="tableVisitante" prefHeight="450.0" prefWidth="700.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="colCod" prefWidth="75.0" text="Código" />
+                            <TableColumn fx:id="colNom" prefWidth="75.0" text="Nombre " />
+                              <TableColumn fx:id="colCed" prefWidth="75.0" text="Cédula" />
+                              <TableColumn fx:id="colCor" prefWidth="75.0" text="Correo" />
+                              <TableColumn fx:id="colMz" prefWidth="75.0" text="Mz" />
+                              <TableColumn fx:id="colVil" prefWidth="75.0" text="Villa" />
+                              <TableColumn fx:id="colFec" prefWidth="75.0" text="Fecha" />
                           </columns>
                            <VBox.margin>
                               <Insets />
