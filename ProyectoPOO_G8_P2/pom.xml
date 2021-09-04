@@ -4,7 +4,6 @@
     <groupId>espol</groupId>
     <artifactId>ProyectoPOO_G8_P2</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>  
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
@@ -26,34 +25,23 @@
             <artifactId>ports-javaxmail</artifactId>
             <version>7.2.0</version>
         </dependency>
-        <dependency>
-            <groupId>javamail</groupId>
-            <artifactId>javamail</artifactId>
-            <version>1.3.3</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.2</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
-                        <configuration>
-                            <release>15</release>
-                        </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>espol.proyectopoo_g8_p2.Launcher</mainClass>
+                    <mainClass>espol.proyectopoo_g8_p2.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -95,30 +83,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <archive>
-                            <manifest>
-                                <mainClass>
-                                    espol.proyectopoo_g8_p2.Launcher
-                                </mainClass>
-                            </manifest>
-                            </archive>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins> 
+        </plugins>
     </build>
 </project>
