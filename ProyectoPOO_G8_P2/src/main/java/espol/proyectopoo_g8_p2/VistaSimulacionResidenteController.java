@@ -9,6 +9,7 @@ import espol.proyectopoo_g8_p2.App;
 import espol.proyectopoo_g8_p2.App;
 import espol.proyectopoo_g8_p2.App;
 import espol.proyectopoo_g8_p2.App;
+import espol.proyectopoo_g8_p2.backend.Peaton;
 import espol.proyectopoo_g8_p2.backend.Residente;
 import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
@@ -59,26 +60,13 @@ public class VistaSimulacionResidenteController implements Initializable {
 
     @FXML
     private void comprobarVehiculo(MouseEvent event) {
-        List<Vehiculo> vehiculos = Vehiculo.cargarVehiculos();
-        boolean comp = true;
         try{
         String mat = txtVehiculo.getText();
         if(mat.isBlank()){
         throw new EnBlancoException();
         }
-        
-        for(Vehiculo v: vehiculos){
-            if(v.getNumMatricula().equals(mat)){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡EL VEHÍCULO PUEDE INGRESAR!");
-                alert.show();
-                comp = false;
-            }
-        }
-        
-        if(comp){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "¡EL VEHÍCULO NO HA SIDO ENCONTRADO!");
-            alert.show();
-        }
+        Vehiculo v = new Vehiculo(mat);
+        v.ingreso();
         
         txtVehiculo.clear();
         
@@ -90,28 +78,15 @@ public class VistaSimulacionResidenteController implements Initializable {
 
     @FXML
     private void comprobarPeaton(MouseEvent event) {
-        List<Residente> residentes = Residente.cargarResidente();
-        boolean comp = true;
         try{
         String ced = txtCedula.getText();
         String cod = txtCodigo.getText();
         if(ced.isBlank() || cod.isBlank()){
         throw new EnBlancoException();
-        }
-        
-        for(Residente r: residentes){
-            if(r.getCedula().equals(ced) && r.getPinAcceso().equals(cod)){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡EL PEATÓN PUEDE INGRESAR!");
-                alert.show();
-                comp = false;
-            }
-        }
-        
-        if(comp){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "¡EL RESIDENTE NO HA SIDO ENCONTRADO!");
-            alert.show();
-        }
-        
+        }    
+        Peaton p = new Peaton(ced, cod);
+        p.ingreso();
+ 
         txtCedula.clear();
         txtCodigo.clear();
         

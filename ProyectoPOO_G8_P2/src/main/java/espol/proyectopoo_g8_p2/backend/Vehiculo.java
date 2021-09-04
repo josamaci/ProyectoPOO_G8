@@ -6,7 +6,6 @@
 package espol.proyectopoo_g8_p2.backend;
 
 import espol.proyectopoo_g8_p2.App;
-import static espol.proyectopoo_g8_p2.backend.Residente.cargarResidente;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -16,12 +15,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
 
 /**
  *
  * @author andre
  */
-public class Vehiculo {
+public class Vehiculo implements Movibles{
     private String numMatricula;
     private String nombrePropietario;
     
@@ -29,7 +29,10 @@ public class Vehiculo {
         numMatricula = num;
         nombrePropietario = nombre;
     }
-    
+    public Vehiculo(String num){
+        numMatricula = num;
+        nombrePropietario = null;
+    }
  
     
     public static List<Vehiculo> cargarVehiculos(){
@@ -89,4 +92,23 @@ public class Vehiculo {
             }
             
         }
+
+    @Override
+    public void ingreso() {
+        List<Vehiculo> vehiculos = Vehiculo.cargarVehiculos();
+        boolean comp = true;
+        
+        for(Vehiculo v: vehiculos){
+            if(v.getNumMatricula().equals(numMatricula)){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡EL VEHÍCULO PUEDE INGRESAR!");
+                alert.show();
+                comp = false;
+            }
+        }
+        
+        if(comp){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "¡EL VEHÍCULO NO HA SIDO ENCONTRADO!");
+            alert.show();
+        }
+    }
 }
