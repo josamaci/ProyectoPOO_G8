@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.proyectopoo_g8_p2.RegistrarResidenteController">
    <top>
       <Label text="Registro de residentes" BorderPane.alignment="CENTER">
@@ -71,12 +70,12 @@
    <bottom>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Aceptar">
+            <Button mnemonicParsing="false" onAction="#Aceptar" text="Aceptar">
                <HBox.margin>
                   <Insets bottom="15.0" right="30.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Cancelar">
+            <Button mnemonicParsing="false" onAction="#Cancelar" text="Cancelar">
                <HBox.margin>
                   <Insets bottom="15.0" />
                </HBox.margin>

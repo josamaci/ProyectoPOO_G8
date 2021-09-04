@@ -95,7 +95,6 @@ public class VistaAdminController implements Initializable {
                 event.consume();
                 datosResidente.setVisible(false);
                 
-                
             });
       
             r.setOnMousePressed(event -> {
@@ -121,20 +120,19 @@ public class VistaAdminController implements Initializable {
                 
             });
             
-            EventHandler eventHandler = (event)->{
-                casaSeleccionada = c;
-            };
+            //EventHandler eventHandler = (event)->{
+            //    casaSeleccionada = c;
+            //};
             
-            r.setOnMouseClicked(eventHandler);
+            r.setOnMouseClicked(event -> {
                 try{
                         //1. create an FXMLLoader object and store in it the result of the statement
-                        FXMLLoader loader = new FXMLLoader(App.class.getResource("registarResidente.fxml"));
+                        FXMLLoader loader = new FXMLLoader(App.class.getResource("registrarResidente.fxml"));
             
                         //2. cargar la vista
-                        Parent viewAgradecimiento = loader.load();
                 
                         //3. fijar el contenido en la scena
-                        App.setRoot(viewAgradecimiento);
+                        App.setRoot("registrarResidente");
             
                         //4. Obtener la instancia del contralodro asociado a la vista
                         RegistrarResidenteController registroController 
@@ -143,22 +141,22 @@ public class VistaAdminController implements Initializable {
                         //5. Pasamos al infromacion al controlador
                         registroController.setCasa(c);
             
-                    }catch(IOException ex){
+                    }catch(Exception ex){
                         //event -> es una referencia al evento que ocurrio
                         //generar el nuevo contenido a partir de VistaAgredecimeinto.fxml
                         
                         System.out.println("No se ha podido cargar la vista");
-                        System.out.println("registarResidente.fxml");
-                    } catch (Throwable ex) {
-                ex.printStackTrace();
-            }
+                        System.out.println("registrarResidente.fxml");
+                    }
+            });
         }
+   
     }
-            
-    @FXML
-    public void regresarInicioSesion(ActionEvent event) throws IOException{
+    
+    @FXML  
+    private void regresarInicioSesion(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(App.class.getResource("inicioSesion.fxml"));
         Parent viewInicio = loader.load();
-        App.setRoot("principal");   
-    }
+        App.setRoot("principal");
+    }    
 }

@@ -9,12 +9,15 @@ import espol.proyectopoo_g8_p2.backend.Casa;
 import espol.proyectopoo_g8_p2.backend.Pin;
 import espol.proyectopoo_g8_p2.backend.Residente;
 import espol.proyectopoo_g8_p2.backend.Ubicacion;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -24,7 +27,6 @@ import javafx.scene.control.TextField;
  * @author andre
  */
 public class RegistrarResidenteController implements Initializable {
-
 
     @FXML
     private TextField txtNombre;
@@ -57,7 +59,6 @@ public class RegistrarResidenteController implements Initializable {
         casaSeleccionada = c;
     }
     
-    
     @FXML
     
     private void Aceptar(ActionEvent event){
@@ -66,25 +67,75 @@ public class RegistrarResidenteController implements Initializable {
         String genero = cbGenero.getValue();
         String cedula = txtCedula.getText();
         
-        if((!nombre.isBlank()) && (!correo.isBlank() & correo.contains("@")) && 
-                (!genero.isBlank()) && (cedula.isBlank() & (cedula.length() == 10))){
-            try{
-                String[] splitNombre = correo.split("@");
-                String nombreU = splitNombre[0];
-                String nombreUsuario = nombreU = nombreU.substring(0,1).toUpperCase() + nombreU.substring(1);
-                String contrasena = nombreU.toUpperCase();
-                String pin = Pin.crearPin(4);
-                Ubicacion ubicacion = new Ubicacion(casaSeleccionada.getCoordenadas().getX(),casaSeleccionada.getCoordenadas().getY());
-                Casa casa = new Casa(nombre, ubicacion, casaSeleccionada.getManzana(), casaSeleccionada.getVilla());
-                
-                Residente nuevoResidente = new Residente
-        (nombreUsuario, contrasena, correo, casa, genero, nombre, null, cedula, pin);
-                
-                
+        //if((!nombre.isBlank()) && (!correo.isBlank() & correo.contains("@")) && 
+        //        (!genero.isBlank()) && (cedula.isBlank() & (cedula.length() == 10))){
+        
+        if(!nombre.isBlank()){
+            if(!correo.isBlank() & correo.contains("@")){
+                if(!genero.isBlank()){
+                    if(!cedula.isBlank() & cedula.length()==10){
+                        try{    
+                            String nombreUsuario = nombre.substring(0,1).toUpperCase() + nombre.substring(1);
+                            String contrasena = cedula;
+                            String pin = Pin.crearPin(4);
+                            Residente nuevoResidente = new Residente(nombreUsuario, contrasena, correo, casaSeleccionada, genero, nombre, null, cedula, pin);
+                            
+                            try{
+                                App.getUsuario().nuevoUsuario(nuevoResidente);
+                            }catch(Exception ex){
+                                System.out.println("Error añadiendo reisdente");
+                            }
+                            //ERROR: Ubicacion ubicacion = new Ubicacion(casaSeleccionada.getCoordenadas().getX(),casaSeleccionada.getCoordenadas().getY());
+                            //casaSeleccionada.setResidente(nombre);
+                            //Casa casa = new Casa(nombre, ubicacion, casaSeleccionada.getManzana(), casaSeleccionada.getVilla());                          
+                            
+                            try{
+                    
+                                FXMLLoader loader = new FXMLLoader(App.class.getResource("vistaAdmin.fxml"));
+                                App.setRoot("vistaAdmin");
+                        
+                        //5. Pasamos al infromacion al controlador
+                        
+                        
+                        
+                            }catch(IOException ex){
+                        //event -> es una referencia al evento que ocurrio
+                        //generar el nuevo contenido a partir de VistaAgredecimeinto.fxml
+                        
+                                System.out.println("No se ha podido cargar la vista");
+                                System.out.println("VistaPrincipal.fxml");
+                            }
+                        }
+                        catch(Exception e){
+                            System.out.println("Error cargando información del residente");
+                        }
+                    }
+                    else{
+                        System.out.println("Error cedula");
+                    }
+                }
+                else{
+                    System.out.println("Error genero");
+                }
             }
-            catch(Exception e){
-                
+            else{
+                System.out.println("Error correo");
             }
+        }
+        else{
+            System.out.println("Error nombre");
+        }
+    }
+    
+    @FXML
+    
+    private void Cancelar(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("vistaAdmin.fxml"));
+            Parent viewInicio = loader.load();
+            App.setRoot("vistaAdmin");
+        }catch(IOException e){
+            System.out.println("Error cargando vistaAdmin.fxml");
         }
     }
     
