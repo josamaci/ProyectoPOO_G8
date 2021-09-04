@@ -17,12 +17,6 @@ public class Peaton implements Movibles{
     public String getPinAcceso(){
     return pinAcceso;
     }
-    public void setNumCedula(){
-    this.numCedula=numCedula;
-    }
-    public void setPinAcceso(){
-    this.pinAcceso=pinAcceso;
-    }
 
     @Override
     public void ingreso() {
