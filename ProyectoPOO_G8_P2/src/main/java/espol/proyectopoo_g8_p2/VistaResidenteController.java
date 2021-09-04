@@ -137,12 +137,12 @@ public class VistaResidenteController implements Initializable {
         ComboMesVisita.getItems().add(i);}
         ComboMesVisita.getSelectionModel().select(LocalDateTime.now().getMonth().getValue()-1);
         
-        for(int i=1; i<=24; i++){
+        for(int i=0; i<=23; i++){
         ComboHoraVisita.getItems().add(i);
         ComboHoraVisita.getSelectionModel().select(LocalDateTime.now().getHour()-1);
         }
         
-        for(int i=1; i<=60; i++){
+        for(int i=0; i<=59; i++){
         ComboMinutoVisita.getItems().add(i);}
         ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute()-1);
         
@@ -223,7 +223,7 @@ public class VistaResidenteController implements Initializable {
         gridVehiculo.add(lbl,y,x);
         
         Vehiculo.AgregarVehiculo(veh);
-        
+        txtVehiculo.clear();
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Se ha agredado el vehículo.");
             alert.show();
         
@@ -302,6 +302,11 @@ public class VistaResidenteController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "SE HA REGISTRADO UNA NUEVA VISITA");
         alert.show(); 
         
+        txtNombreVisitante.clear();
+        txtCedulaVisitante.clear();
+        txtCorreoVisitante.clear();
+        txtDiaVisitante.clear();
+                
         }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR NINGÚN CAMPO EN BLANCO!");
         alert.show();  

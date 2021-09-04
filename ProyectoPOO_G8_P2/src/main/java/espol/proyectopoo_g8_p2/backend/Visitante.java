@@ -17,6 +17,7 @@ import java.util.List;
     private String villaResidente;
     private LocalDateTime fechaIngreso;
     private String correo;
+    private boolean usoCodigo;
     
     public Visitante(String codigoAcceso,String nombreVisitante,String numCedula,String correo, String mzResidente,String villaResidente,LocalDateTime fechaIngreso){
     this.codigoAcceso=codigoAcceso;
@@ -26,6 +27,7 @@ import java.util.List;
     this.villaResidente=villaResidente;
     this.fechaIngreso = fechaIngreso;
     this.correo = correo;
+    this.usoCodigo = true;
     }
     
     
@@ -78,6 +80,9 @@ import java.util.List;
         public LocalDateTime getFechaIngreso(){
     return fechaIngreso;
     }
+        public boolean getUsoCodigo(){
+    return usoCodigo;
+    }
     public void setCodigoAcceso(String codigoAcceso){
     this.codigoAcceso = codigoAcceso;
     }
@@ -93,6 +98,14 @@ import java.util.List;
         public void setVillaResidente(String villaResidente){
     this.villaResidente=villaResidente;
     } 
-      
+        public void setUsoCodigo(boolean bool){
+    usoCodigo = bool;
+    }   
+        public boolean comprobarFechaIngreso(){
+            if(fechaIngreso.minusMinutes(5).isBefore(LocalDateTime.now()) && fechaIngreso.minusMinutes(-5).isAfter(LocalDateTime.now()))
+                return true;
+            
+            return false;
+        }
 }
 

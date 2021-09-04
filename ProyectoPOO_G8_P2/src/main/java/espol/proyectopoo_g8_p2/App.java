@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 /**
  * JavaFX App
@@ -18,6 +19,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        System.out.println(LocalDateTime.now().compareTo(LocalDateTime.now()));
         try{
         scene = new Scene(loadFXML("principal"), 700, 700);
         stage.setScene(scene);
