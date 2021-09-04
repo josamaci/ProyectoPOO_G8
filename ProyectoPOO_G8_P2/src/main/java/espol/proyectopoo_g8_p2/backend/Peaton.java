@@ -19,7 +19,7 @@ public class Peaton implements Movibles{
     }
 
     @Override
-    public void ingreso() {
+    public int ingreso() {
         List<Residente> residentes = Residente.cargarResidente();
         boolean comp = true;
         for(Residente r: residentes){
@@ -27,6 +27,7 @@ public class Peaton implements Movibles{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡EL PEATÓN PUEDE INGRESAR!");
                 alert.show();
                 comp = false;
+                return 1;
             }
         }
         
@@ -34,6 +35,7 @@ public class Peaton implements Movibles{
             Alert alert = new Alert(Alert.AlertType.ERROR, "¡EL RESIDENTE NO HA SIDO ENCONTRADO!");
             alert.show();
         }
+        return 0;
     }
 }
 

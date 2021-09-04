@@ -85,11 +85,11 @@ public class VistaSimulacionResidenteController implements Initializable {
         throw new EnBlancoException();
         }    
         Peaton p = new Peaton(ced, cod);
-        p.ingreso();
+        int i = p.ingreso();
  
         txtCedula.clear();
         txtCodigo.clear();
-        contador++;
+        contador+=i;
         }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR EL CAMPO EN BLANCO!");
         alert.show();  
