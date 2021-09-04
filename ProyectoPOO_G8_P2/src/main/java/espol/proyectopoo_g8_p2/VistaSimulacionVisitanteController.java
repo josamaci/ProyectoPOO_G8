@@ -9,6 +9,7 @@ import espol.proyectopoo_g8_p2.App;
 import espol.proyectopoo_g8_p2.App;
 import espol.proyectopoo_g8_p2.App;
 import espol.proyectopoo_g8_p2.App;
+import espol.proyectopoo_g8_p2.backend.Residente;
 import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
 import java.io.IOException;
@@ -89,6 +90,35 @@ public class VistaSimulacionVisitanteController implements Initializable {
 
     @FXML
     private void comprobarPeaton(MouseEvent event) {
+        List<Residente> residentes = Residente.cargarResidente();
+        boolean comp = true;
+        try{
+        String ced = txtCedula.getText();
+        String cod = txtCodigo.getText();
+        if(ced.isBlank() || cod.isBlank()){
+        throw new EnBlancoException();
+        }
+        
+        for(Residente r: residentes){
+            if(r.getCedula().equals(ced) && r.getPinAcceso().equals(cod)){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡EL PEATÓN PUEDE INGRESAR!");
+                alert.show();
+                comp = false;
+            }
+        }
+        
+        if(comp){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "¡EL RESIDENTE NO HA SIDO ENCONTRADO!");
+            alert.show();
+        }
+        
+        txtCedula.clear();
+        txtCodigo.clear();
+        
+        }catch(EnBlancoException e){
+        Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR EL CAMPO EN BLANCO!");
+        alert.show();  
+        }
     }
 
 }
