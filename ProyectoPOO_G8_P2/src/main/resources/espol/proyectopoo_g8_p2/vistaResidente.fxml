@@ -417,11 +417,13 @@
                         </Label>
                         <TableView fx:id="tableVisitante" prefHeight="450.0" prefWidth="700.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Código" />
-                            <TableColumn prefWidth="75.0" text="Nombre " />
-                              <TableColumn prefWidth="75.0" text="Cédula" />
-                              <TableColumn prefWidth="75.0" text="Correo" />
-                              <TableColumn prefWidth="75.0" text="Fecha" />
+                            <TableColumn fx:id="colCod" prefWidth="75.0" text="Código" />
+                            <TableColumn fx:id="colNom" prefWidth="75.0" text="Nombre " />
+                              <TableColumn fx:id="colCed" prefWidth="75.0" text="Cédula" />
+                              <TableColumn fx:id="colCor" prefWidth="75.0" text="Correo" />
+                              <TableColumn fx:id="colMz" prefWidth="75.0" text="Mz" />
+                              <TableColumn fx:id="colVil" prefWidth="75.0" text="Villa" />
+                              <TableColumn fx:id="colFec" prefWidth="75.0" text="Fecha" />
                           </columns>
                            <VBox.margin>
                               <Insets />

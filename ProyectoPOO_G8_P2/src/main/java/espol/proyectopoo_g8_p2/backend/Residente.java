@@ -4,6 +4,7 @@ import espol.proyectopoo_g8_p2.backend.Usuario;
 import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,10 +16,15 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+
 public class Residente extends Usuario{
     private String correo;
     private Casa casa;
@@ -59,11 +65,15 @@ public class Residente extends Usuario{
     List<Visitante> visitantes = Visitante.cargarVisitante();
     char [] chars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
     int charsLength = chars.length;
-    String codigo;
+
+    Random random = new Random();
+    StringBuffer buffer = new StringBuffer();
+    for (int i=0;i<8;i++){
+    buffer.append(chars[random.nextInt(charsLength)]);
+}  
+    String codigo=buffer.toString();
     boolean c=false;
     do{
-        Random random = new Random();
-        StringBuffer buffer = new StringBuffer();
 
         for (int i=0;i<8;i++){
         buffer.append(chars[random.nextInt(charsLength)]);
@@ -78,6 +88,7 @@ public class Residente extends Usuario{
     }
     }while(c);
     
+
     
     String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
     try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta, true))){
@@ -126,20 +137,52 @@ public class Residente extends Usuario{
                     String[] fecha = p[6].split("-");
                     LocalDateTime lc = LocalDateTime.of(Integer.parseInt(fecha[0]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[2]), Integer.parseInt(fecha[3]), Integer.parseInt(fecha[4]));
                     Visitante v = new Visitante(p[0],p[1],p[2],p[3],p[4],p[5], lc);
-                    if(v.getMzResidente().equals(r.getCasa().getManzana()) && v.getVillaResidente().equals(r.getCasa().getVilla())){
+                    if(v.getMzResidente().equals(r.getCasa().getManzana()) && v.getVillaResidente().equals(r.getCasa().getVilla()) && v.getFechaIngreso().isAfter(LocalDateTime.now())){
                     visitantes.add(v);
                     }
                 }
                 
             } catch (IOException ex){
-                System.out.println("ERROR: No se pudo cargar la información de los residentes");
+                System.out.println("ERROR: No se pudo cargar la información de los visitantes");
             }
         return visitantes;
 
         }
         
-        public void eliminarVisitante(){
+        public void eliminarVisitante(Visitante v){
+ 
+   File inputFile = new File("src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt");
+   File outputFile = new File("src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt");
+   LocalDateTime fActual=LocalDateTime.now();
+    try {
+      BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+      BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
 
+    String linea;
+    
+    while((linea = reader.readLine()) != null) {
+        String[] p = linea.split(",");
+        String[] fecha = p[6].split("-");
+        LocalDateTime lc = LocalDateTime.of(Integer.parseInt(fecha[0]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[2]), Integer.parseInt(fecha[3]), Integer.parseInt(fecha[4]));
+        ZonedDateTime zdt = fActual.atZone(ZoneId.systemDefault()); 
+        Date actual = Date.from(zdt.toInstant());
+        ZonedDateTime zdt1 = lc.atZone(ZoneId.systemDefault()); 
+        Date fechav = Date.from(zdt1.toInstant());
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(fechav);
+        calendar1.add(Calendar.MINUTE, 5);
+        if(p[2].equals(v.getNumCedula())&& !calendar1.getTime().after(actual)){ 
+            continue;
+        }
+        writer.write(linea + System.getProperty("line.separator"));
+    }       
+
+    writer.close();
+    reader.close();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
         }
   
         

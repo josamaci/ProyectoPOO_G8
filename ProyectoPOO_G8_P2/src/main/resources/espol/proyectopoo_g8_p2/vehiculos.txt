@@ -1,5 +1,3 @@
 ABC,jose macias
 DEF,ricardo molina
-wdawd,jose macias
-wdawdwdawda,jose macias
-wdawdwdawdadawdaw,jose macias
+DEE,jose macias
