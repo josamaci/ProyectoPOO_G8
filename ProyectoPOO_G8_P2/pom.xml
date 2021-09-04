@@ -25,6 +25,11 @@
             <artifactId>ports-javaxmail</artifactId>
             <version>7.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>javax.mail</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
