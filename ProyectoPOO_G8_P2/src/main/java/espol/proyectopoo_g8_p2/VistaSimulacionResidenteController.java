@@ -15,6 +15,7 @@ import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,7 +32,7 @@ import javafx.scene.input.MouseEvent;
  * @author JMaci
  */
 public class VistaSimulacionResidenteController implements Initializable {
-
+    ArrayList<LocalTime> horas = new ArrayList();
     int contador = 0;
     @FXML
     private Button botRegresar;
@@ -66,10 +67,13 @@ public class VistaSimulacionResidenteController implements Initializable {
         throw new EnBlancoException();
         }
         Vehiculo v = new Vehiculo(mat);
-        int i = v.ingreso();
+        boolean i = v.ingreso();
         
         txtVehiculo.clear();
-        contador+=i;
+        if(i){
+        contador++;
+        horas.add(LocalTime.now());
+        }
         }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR EL CAMPO EN BLANCO!");
         alert.show();  
@@ -85,11 +89,15 @@ public class VistaSimulacionResidenteController implements Initializable {
         throw new EnBlancoException();
         }    
         Peaton p = new Peaton(ced, cod);
-        int i = p.ingreso();
+        boolean i = p.ingreso();
  
         txtCedula.clear();
         txtCodigo.clear();
-        contador+=i;
+        if(i){
+        contador++;
+        horas.add(LocalTime.now());
+        }
+
         }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR EL CAMPO EN BLANCO!");
         alert.show();  

@@ -44,6 +44,12 @@ public class Casa {
         this.villa=villa;
         residente="";
     }
+    
+    /**
+     * Constructor de la clase Casa vacío
+     */
+    public Casa(){
+    }
  
     /**
      * Método que retorna una lista de casas que se encuentran registradas en casas.txt
@@ -125,16 +131,28 @@ public class Casa {
      public void setVilla(String villa){
     this.villa=villa;
     }
-    
+    /**
+     * setter que cambia el residente de la casa
+     * @param residente
+     */
     public void setResidente(String res){
         residente=res;
     }
     
+    /**
+     * Método que devuelve una copia de lista de casas
+     * @return List<Casa> 
+     */
     public static List<Casa> listaCasa(){
         List<Casa> casas = Casa.cargarCasa();
         return casas;
     }
     
+    /**
+     * Método que asigna un residente a una casa vacía.
+     * @param c
+     * @param res
+     */
     public void nuevoResidente(Casa c, String res){
         c.setResidente(res);
         
