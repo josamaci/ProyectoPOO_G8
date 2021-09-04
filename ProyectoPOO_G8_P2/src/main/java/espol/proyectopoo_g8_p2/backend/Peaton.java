@@ -1,6 +1,9 @@
 package espol.proyectopoo_g8_p2.backend;
 
-public class Peaton{
+import java.util.List;
+import javafx.scene.control.Alert;
+
+public class Peaton implements Movibles{
     private String numCedula;
     private String pinAcceso;
     public Peaton(String numCedula, String pinAcceso){
@@ -14,10 +17,23 @@ public class Peaton{
     public String getPinAcceso(){
     return pinAcceso;
     }
-    public void setNumCedula(){
-    this.numCedula=numCedula;
-    }
-    public void setPinAcceso(){
-    this.pinAcceso=pinAcceso;
+
+    @Override
+    public void ingreso() {
+        List<Residente> residentes = Residente.cargarResidente();
+        boolean comp = true;
+        for(Residente r: residentes){
+            if(r.getCedula().equals(numCedula) && r.getPinAcceso().equals(pinAcceso)){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡EL PEATÓN PUEDE INGRESAR!");
+                alert.show();
+                comp = false;
+            }
+        }
+        
+        if(comp){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "¡EL RESIDENTE NO HA SIDO ENCONTRADO!");
+            alert.show();
+        }
     }
 }
+
