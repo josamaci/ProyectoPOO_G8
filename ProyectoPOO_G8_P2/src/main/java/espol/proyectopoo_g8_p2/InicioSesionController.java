@@ -64,7 +64,7 @@ public class InicioSesionController implements Initializable {
         boolean c1 = false;
         boolean c2 = false;
         
-        for(Usuario u: Usuario.cargarUsuario()){
+        for(Usuario u: Usuario.getListaUsuarios()){
             
             if(u.getNombreUsuario().equals(usuario)){
                 c1= true;

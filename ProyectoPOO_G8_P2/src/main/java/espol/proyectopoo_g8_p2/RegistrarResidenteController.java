@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -82,26 +83,27 @@ public class RegistrarResidenteController implements Initializable {
                             
                             try{
                                 App.getUsuario().nuevoUsuario(nuevoResidente);
+                                
                             }catch(Exception ex){
                                 System.out.println("Error añadiendo reisdente");
                             }
-                            //ERROR: Ubicacion ubicacion = new Ubicacion(casaSeleccionada.getCoordenadas().getX(),casaSeleccionada.getCoordenadas().getY());
-                            //casaSeleccionada.setResidente(nombre);
-                            //Casa casa = new Casa(nombre, ubicacion, casaSeleccionada.getManzana(), casaSeleccionada.getVilla());                          
+                            
+                            for(Casa c: Casa.listaCasa()){
+                                if(c.getManzana().equals(casaSeleccionada.getManzana())){
+                                    if(c.getVilla().equals(casaSeleccionada.getVilla())){
+                                        c.setResidente(nuevoResidente.getNombre());
+                                    }
+                                }                                    
+                            }
                             
                             try{
                     
                                 FXMLLoader loader = new FXMLLoader(App.class.getResource("vistaAdmin.fxml"));
                                 App.setRoot("vistaAdmin");
                         
-                        //5. Pasamos al infromacion al controlador
-                        
-                        
-                        
+
                             }catch(IOException ex){
-                        //event -> es una referencia al evento que ocurrio
-                        //generar el nuevo contenido a partir de VistaAgredecimeinto.fxml
-                        
+
                                 System.out.println("No se ha podido cargar la vista");
                                 System.out.println("VistaPrincipal.fxml");
                             }
@@ -111,19 +113,23 @@ public class RegistrarResidenteController implements Initializable {
                         }
                     }
                     else{
-                        System.out.println("Error cedula");
+                        Alert alert = new Alert(Alert.AlertType.WARNING, "¡LA CÉDULA INGRESADA NO ES VÁLIDA!");
+                        alert.show();
                     }
                 }
                 else{
-                    System.out.println("Error genero");
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "¡POR FAVOR, SELECCIONE UN GÉNERO ANTES DE CONTINUAR!");
+                    alert.show();
                 }
             }
             else{
-                System.out.println("Error correo");
+                Alert alert = new Alert(Alert.AlertType.WARNING, "¡EL CORREO INGRESADO NO ES VÁLIDO!");
+                alert.show();
             }
         }
         else{
-            System.out.println("Error nombre");
+            Alert alert = new Alert(Alert.AlertType.WARNING, "¡NO PUEDE DEJAR EL NOMBRE EN BLANCO!");
+            alert.show();
         }
     }
     

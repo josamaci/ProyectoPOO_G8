@@ -117,37 +117,26 @@ public class VistaAdminController implements Initializable {
                 r.setTranslateY(0);
                 c.getCoordenadas().setX(r.getLayoutX());
                 c.getCoordenadas().setY(r.getLayoutY());
-                
             });
             
-            //EventHandler eventHandler = (event)->{
-            //    casaSeleccionada = c;
-            //};
-            
             r.setOnMouseClicked(event -> {
-                try{
-                        //1. create an FXMLLoader object and store in it the result of the statement
-                        FXMLLoader loader = new FXMLLoader(App.class.getResource("registrarResidente.fxml"));
-            
-                        //2. cargar la vista
                 
-                        //3. fijar el contenido en la scena
-                        App.setRoot("registrarResidente");
-            
-                        //4. Obtener la instancia del contralodro asociado a la vista
-                        RegistrarResidenteController registroController 
-                        = loader.getController();
-            
-                        //5. Pasamos al infromacion al controlador
-                        registroController.setCasa(c);
-            
-                    }catch(Exception ex){
-                        //event -> es una referencia al evento que ocurrio
-                        //generar el nuevo contenido a partir de VistaAgredecimeinto.fxml
-                        
-                        System.out.println("No se ha podido cargar la vista");
-                        System.out.println("registrarResidente.fxml");
-                    }
+                if(c.getResidente() == "No existe residente"){
+                    try{
+                            FXMLLoader loader = new FXMLLoader(App.class.getResource("registrarResidente.fxml"));
+                            App.setRoot("registrarResidente");
+
+                            RegistrarResidenteController registroController 
+                            = loader.getController();
+
+                            registroController.setCasa(c);
+
+                        }catch(Exception ex){
+
+                            System.out.println("No se ha podido cargar la vista");
+                            System.out.println("registrarResidente.fxml");
+                        }
+                }
             });
         }
    

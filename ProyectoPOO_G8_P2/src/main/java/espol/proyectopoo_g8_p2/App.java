@@ -47,4 +47,5 @@ public class App extends Application {
     public static void setUsuario(Usuario u){
         App.u = u;
     }
+    
 }

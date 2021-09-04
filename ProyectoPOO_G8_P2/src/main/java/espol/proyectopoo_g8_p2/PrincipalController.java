@@ -34,7 +34,7 @@ public class PrincipalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       casas = Casa.cargarCasa();
+       casas = Casa.listaCasa();
                }    
     
     @FXML
