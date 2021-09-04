@@ -146,17 +146,7 @@ public class VistaResidenteController implements Initializable {
         ComboMinutoVisita.getItems().add(i);}
         ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute()-1);
         
-        tableVisitante.setEditable(true);
-
-        /*colCod.setCellValueFactory(new PropertyValueFactory<>("Código"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        colCor.setCellValueFactory(new PropertyValueFactory<>("Correo"));
-        colMz.setCellValueFactory(new PropertyValueFactory<>("Manzana"));
-        colVil.setCellValueFactory(new PropertyValueFactory<>("Villa"));
-        colCed.setCellValueFactory(new PropertyValueFactory<>("Cédula"));
-        colFec.setCellValueFactory(new PropertyValueFactory<>("Fecha"));*/
-        
-       
+        tableVisitante.setEditable(true);       
         
         final ObservableList<Visitante> visitantes = FXCollections.observableArrayList(r.listaVisitantes());
         tableVisitante.getItems().addAll(visitantes);
