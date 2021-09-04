@@ -9,6 +9,6 @@ and open the template in the editor.
 */
 
 #panelMapa{
-    -fx-background-image: url('mapa.jpg');
+    -fx-background-image: url("mapa.jpg");
     -fx-background-size: 500 500 ;
 }

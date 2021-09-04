@@ -41,26 +41,26 @@ public class Casa {
     }
     
        
-        public static List<Casa> cargarCasa(){
+    public static List<Casa> cargarCasa(){
         
-            String ruta = "casas.txt";
-            List<Casa> casas = new ArrayList<>();
+        String ruta = "casas2.txt";
+        List<Casa> casas = new ArrayList<>();
             
-            try(InputStream input = App.class.getResource(ruta).openStream();
-                BufferedReader bf = new BufferedReader(
+        try(InputStream input = App.class.getResource(ruta).openStream();
+            BufferedReader bf = new BufferedReader(
                                     new InputStreamReader(input,"UTF-8"))){
                 
-                String linea;
+            String linea;
                 
-                while((linea=bf.readLine())!=null){
+            while((linea=bf.readLine())!=null){
                     
-                    String[] p = linea.split(",");
-                    String[] u = p[1].split(":");
+                String[] p = linea.split(",");
+                String[] u = p[1].split(":");
                     
-                    Ubicacion ubicacion = new Ubicacion(Double.valueOf(u[0]),Double.valueOf(u[1]));
-                    Casa casa = new Casa(p[0],ubicacion,p[2],p[3]);
-                    casas.add(casa);
-                }
+                Ubicacion ubicacion = new Ubicacion(Double.valueOf(u[0]),Double.valueOf(u[1]));
+                Casa casa = new Casa(p[0],ubicacion,p[2],p[3]);
+                casas.add(casa);
+            }
             } catch (IOException ex){
                 System.out.println("ERROR: No se pudo cargar la información de las casas");
 
@@ -89,13 +89,18 @@ public class Casa {
     this.villa=villa;
     }
     
-       public void setResidente(String res){
-    residente=res;
+    public void setResidente(String res){
+        residente=res;
     }
     
     public static List<Casa> listaCasa(){
         List<Casa> casas = Casa.cargarCasa();
         return casas;
+    }
+    
+    public void nuevoResidente(Casa c, String res){
+        c.setResidente(res);
+        
     }
 }
     

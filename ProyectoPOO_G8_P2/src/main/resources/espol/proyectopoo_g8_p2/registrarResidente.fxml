@@ -70,7 +70,7 @@
    <bottom>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#Aceptar" text="Aceptar">
+            <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#Aceptar" text="Aceptar">
                <HBox.margin>
                   <Insets bottom="15.0" right="30.0" />
                </HBox.margin>

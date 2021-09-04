@@ -9,6 +9,7 @@ import espol.proyectopoo_g8_p2.backend.Casa;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -54,19 +55,21 @@ public class VistaAdminController implements Initializable {
     private VBox datosResidente;
     private Label nombre;
     private Casa casaSeleccionada;
+    private ArrayList<Casa> casas = (ArrayList<Casa>) App.getCiudadela().getListaCasas();
     
     @FXML
     private Pane panelMapa;
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        List<Casa> casas = Casa.listaCasa();
+        
         for(Casa c: casas){
             Rectangle r = new Rectangle(50,50, Color.RED);
-            //panelMapa.getChildren().addAll(r);
             
             Group root = new Group();
             root.getChildren().addAll(r);
@@ -96,7 +99,6 @@ public class VistaAdminController implements Initializable {
                 datosResidente.setVisible(false);
                 
             });
-      
             r.setOnMousePressed(event -> {
                 anchorX = event.getSceneX();
                 anchorY = event.getSceneY();       
@@ -107,7 +109,7 @@ public class VistaAdminController implements Initializable {
             r.setOnMouseDragged(event -> {
                 r.setTranslateX(event.getSceneX() - anchorX);
                 r.setTranslateY(event.getSceneY() - anchorY);
-                             
+                
             });
             
             r.setOnMouseReleased(event -> {
@@ -119,20 +121,23 @@ public class VistaAdminController implements Initializable {
                 c.getCoordenadas().setY(r.getLayoutY());
             });
             
-            r.setOnMouseClicked(event -> {
-                
-                if(c.getResidente() == "No existe residente"){
+            r.setOnMouseClicked((MouseEvent event) -> {
+                System.out.println(c.getResidente());
+                if(c.getResidente().isBlank()){
                     try{
                             FXMLLoader loader = new FXMLLoader(App.class.getResource("registrarResidente.fxml"));
-                            App.setRoot("registrarResidente");
-
+                            
+                            Parent registrarResidente = loader.load();
+                            
+                            App.setRoot(registrarResidente);
+                            
                             RegistrarResidenteController registroController 
                             = loader.getController();
-
+                                
                             registroController.setCasa(c);
-
-                        }catch(Exception ex){
-
+                                
+                        }catch(IOException ex){
+                                
                             System.out.println("No se ha podido cargar la vista");
                             System.out.println("registrarResidente.fxml");
                         }
@@ -147,5 +152,6 @@ public class VistaAdminController implements Initializable {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("inicioSesion.fxml"));
         Parent viewInicio = loader.load();
         App.setRoot("principal");
-    }    
+    }
+    
 }

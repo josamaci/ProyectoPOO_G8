@@ -44,7 +44,7 @@ public class Residente extends Usuario{
             this.nombre = nombre;
             this.cedula = cedula;
             this.pinAcceso = pinAcceso;
-           vehiculos = new ArrayList();
+            vehiculos = new ArrayList();
             
         }
         
