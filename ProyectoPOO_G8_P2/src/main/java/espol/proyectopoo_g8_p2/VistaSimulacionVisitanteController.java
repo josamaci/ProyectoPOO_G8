@@ -15,6 +15,7 @@ import espol.proyectopoo_g8_p2.backend.Visitante;
 import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,6 +41,18 @@ public class VistaSimulacionVisitanteController implements Initializable {
     private TextField txtCodigo;
     @FXML
     private Button comprobarCodigo;
+    @FXML
+    private TextField txtNombreVisitante;
+    @FXML
+    private TextField txtCedulaVisitante;
+    @FXML
+    private TextField txtNombreResidente;
+    @FXML
+    private TextField txtManzanaResidente;
+    @FXML
+    private TextField txtVillaResidente;
+    @FXML
+    private Button enviar;
     /**
      * Initializes the controller class.
      */
@@ -89,6 +102,45 @@ public class VistaSimulacionVisitanteController implements Initializable {
         alert.show();  
         }
         
+    }
+
+    @FXML
+    private void enviar(MouseEvent event) {
+        List<Residente> residentes = Residente.cargarResidente();
+        boolean comp = true;
+        try{
+        String nomVis = txtNombreVisitante.getText();
+        String cedVis = txtCedulaVisitante.getText();
+        String nomRes = txtNombreResidente.getText();
+        String mzRes = txtManzanaResidente.getText();
+        String vilRes = txtVillaResidente.getText();
+        if(nomVis.isBlank() || cedVis.isBlank() || nomRes.isBlank() || mzRes.isBlank() || vilRes.isBlank()){
+        throw new EnBlancoException();
+        }
+        
+        for(Residente r: residentes){
+            if(r.getCasa().getManzana().equals(mzRes) && r.getCasa().getVilla().equals(vilRes) && r.getNombre().equals(nomRes)){
+                Visitante v = r.registrarVisitanteSinCodigo(nomVis, cedVis, LocalDateTime.now().minusMinutes(-5));
+                comp = false;
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡SE HA ENVIADO EL CORREO AL RESIDENTE! \nVaya a la pestaña \"Con Código\" para el ingreso del visitante.");
+                    alert.show();
+                
+            }
+            if(comp){Alert alert = new Alert(Alert.AlertType.ERROR, "¡EL RESIDENTE NO HA SIDO ENCONTRADO!");
+                    alert.show();
+            }
+        }
+        
+        txtNombreVisitante.clear();
+        txtCedulaVisitante.clear();
+        txtNombreResidente.clear();
+        txtManzanaResidente.clear();
+        txtVillaResidente.clear();
+        
+        }catch(EnBlancoException e){
+        Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR EL CAMPO EN BLANCO!");
+        alert.show();  
+        }
     }
 
 }

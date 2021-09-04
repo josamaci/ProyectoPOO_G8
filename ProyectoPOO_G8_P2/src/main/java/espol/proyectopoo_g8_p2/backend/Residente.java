@@ -285,5 +285,46 @@ public class Residente extends Usuario{
             } 
           return res;  
         }
+        
+        public Visitante registrarVisitanteSinCodigo(String nombre,String numcedula, LocalDateTime fecha){
+    
+    List<Visitante> visitantes = Visitante.cargarVisitante();
+    char [] chars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();
+    int charsLength = chars.length;
+
+    Random random = new Random();
+    StringBuffer buffer = new StringBuffer();
+    String codigo;
+    
+    boolean c=false;
+    do{
+        
+        for (int i=0;i<8;i++){
+        buffer.append(chars[random.nextInt(charsLength)]);
+            }  
+
+        codigo=buffer.toString();
+
+        for(int i=0; i<visitantes.size(); i++){
+            if (codigo.equals(visitantes.get(i).getCodigoAcceso())){
+                c = true;
+        }
+    }
+    }while(c);
+    String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+    try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta, true))){
+            
+                    String line = codigo+","+nombre+","+numcedula+","+null+","+casa.getManzana()+","+casa.getVilla()+","+fecha.getYear()+"-"+fecha.getMonthValue()+"-"+fecha.getDayOfMonth()+"-"+fecha.getHour()+"-"+fecha.getMinute();
+                    bf.write(line);
+                    bf.newLine();
+                
+                                
+            }catch (FileNotFoundException ex){
+                System.out.println("ERROR File");
+            } catch (IOException ex){
+                System.out.println("ERROR IO");
+            }
+    return new Visitante(codigo,nombre,numcedula,casa.getManzana(),casa.getVilla(),fecha);
+    }
  }
 

@@ -30,6 +30,16 @@ import java.util.List;
     this.usoCodigo = true;
     }
     
+    public Visitante(String codigoAcceso,String nombreVisitante,String numCedula, String mzResidente,String villaResidente,LocalDateTime fechaIngreso){
+    this.codigoAcceso=codigoAcceso;
+    this.nombreVisitante=nombreVisitante;
+    this.numCedula=numCedula;
+    this.mzResidente=mzResidente;
+    this.villaResidente=villaResidente;
+    this.fechaIngreso = fechaIngreso;
+    this.correo = null;
+    this.usoCodigo = true;
+    }
     
     public Visitante(){
     
