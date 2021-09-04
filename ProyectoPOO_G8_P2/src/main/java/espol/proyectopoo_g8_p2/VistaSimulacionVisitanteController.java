@@ -34,7 +34,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class VistaSimulacionVisitanteController implements Initializable {
 
-
+    int contador = 0;
     @FXML
     private Button botRegresar;
     @FXML
@@ -96,7 +96,7 @@ public class VistaSimulacionVisitanteController implements Initializable {
                     alert.show();}
         
         txtCodigo.clear();
-        
+        contador++;
         }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR EL CAMPO EN BLANCO!");
         alert.show();  
@@ -136,7 +136,7 @@ public class VistaSimulacionVisitanteController implements Initializable {
         txtNombreResidente.clear();
         txtManzanaResidente.clear();
         txtVillaResidente.clear();
-        
+        contador++;
         }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR EL CAMPO EN BLANCO!");
         alert.show();  
