@@ -9,14 +9,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-//comentario
+
+
 public class Casa {
     private String manzana;
     private Ubicacion coordenadas;
     private String villa;
     private String residente;
      /**
-     * Constructor para la clase Propiedad
+     * Constructor para la clase Casa
      * @param manzana - Define la manzana 
      * @param villa - Define la villa donde se encuentra
      * @param coordenadas - Define la ubicacion en coordenadas de la casa
@@ -31,16 +32,23 @@ public class Casa {
         this.residente=residente;
         
     }
+    /**
+     * Constructor de la clase Casa sin RESIDENTE
+     * @param manzana
+     * @param coordenadas
+     * @param villa 
+     */
     public Casa(String manzana,Ubicacion coordenadas,String villa){
         this.manzana=manzana;
         this.coordenadas=coordenadas;
         this.villa=villa;
         residente="";
     }
-    public Casa(){
-    }
-    
-       
+ 
+    /**
+     * Método que retorna una lista de casas que se encuentran registradas en casas.txt
+     * @return List<Casa>
+     */   
     public static List<Casa> cargarCasa(){
         
         String ruta = "casas2.txt";
@@ -67,24 +75,53 @@ public class Casa {
             }
         return casas;
         }
-       public String getManzana(){
+    
+    /**
+     * getter que retorna la manzana de la casa
+     * @return manzana
+     */
+    public String getManzana(){
     return manzana;
     }
+    /**
+     * getter que retorna la ubicación de la casa
+     * @return coordenadas
+     */
      public Ubicacion getCoordenadas(){
     return coordenadas;
     }
+     /**
+     * getter que retorna la villa de la casa
+     * @return villa
+     */
       public String getVilla(){
     return villa;
     }
+      /**
+     * getter que retorna al residente de la casa
+     * @return residente
+     */
        public String getResidente(){
     return residente;
     }
+       /**
+     * setter que cambia la manzana de la casa
+     * @param manzana 
+     */
        public void setManzana(String manzana){
     this.manzana=manzana;
     }
+       /**
+     * setter que cambia la ubicación de la casa
+     * @param u 
+     */
      public void setCoordenadas(Ubicacion u){
    coordenadas=u;
     }
+     /**
+     * setter que cambia la villa de la casa
+     * @param villa 
+     */
      public void setVilla(String villa){
     this.villa=villa;
     }

@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Administrador extends Usuario{
-    
+    /**
+     * Constructor Administrador
+     * @param nombreUsuario
+     * @param contrasenia 
+     */
     public Administrador(String nombreUsuario, String contrasenia){
         super(nombreUsuario, contrasenia);
     }
@@ -20,7 +24,10 @@ public class Administrador extends Usuario{
     public void generarReporte(){
         
     }
-    
+    /**
+     * Método que retorna una lista de los administradores que se encuentran en admin.txt
+     * @return List<Administrador>
+     */
     public static List<Administrador> cargarAdmin(){
         
             String ruta = "admin.txt";
