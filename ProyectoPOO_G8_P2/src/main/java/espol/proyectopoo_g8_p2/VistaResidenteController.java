@@ -89,7 +89,7 @@ public class VistaResidenteController implements Initializable {
     @FXML
     private TextField txtDiaVisitante;
     @FXML
-    private TableColumn<?, ?> colCod;
+    private TableColumn<?,?> colCod;
     @FXML
     private TableColumn<?, ?> colNom;
     @FXML
