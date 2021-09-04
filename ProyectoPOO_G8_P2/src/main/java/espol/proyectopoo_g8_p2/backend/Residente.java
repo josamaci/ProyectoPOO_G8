@@ -68,13 +68,11 @@ public class Residente extends Usuario{
 
     Random random = new Random();
     StringBuffer buffer = new StringBuffer();
-    for (int i=0;i<8;i++){
-    buffer.append(chars[random.nextInt(charsLength)]);
-}  
-    String codigo=buffer.toString();
+    String codigo;
+    
     boolean c=false;
     do{
-
+        
         for (int i=0;i<8;i++){
         buffer.append(chars[random.nextInt(charsLength)]);
             }  

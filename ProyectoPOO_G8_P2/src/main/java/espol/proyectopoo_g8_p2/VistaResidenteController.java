@@ -139,12 +139,12 @@ public class VistaResidenteController implements Initializable {
         
         for(int i=0; i<=23; i++){
         ComboHoraVisita.getItems().add(i);
-        ComboHoraVisita.getSelectionModel().select(LocalDateTime.now().getHour()-1);
+        ComboHoraVisita.getSelectionModel().select(LocalDateTime.now().getHour());
         }
         
         for(int i=0; i<=59; i++){
         ComboMinutoVisita.getItems().add(i);}
-        ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute()-1);
+        ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute());
         
         tableVisitante.setEditable(true);       
         
