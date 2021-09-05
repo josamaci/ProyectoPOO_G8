@@ -103,5 +103,8 @@ public class VistaSimulacionResidenteController implements Initializable {
         alert.show();  
         }
     }
-
+    
+    public int getContadorResidente(){
+        return contador;
+    }
 }

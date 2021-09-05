@@ -142,5 +142,7 @@ public class VistaSimulacionVisitanteController implements Initializable {
         alert.show();  
         }
     }
-
+    public int getContadorVisitante(){
+        return contador;
+    }
 }
