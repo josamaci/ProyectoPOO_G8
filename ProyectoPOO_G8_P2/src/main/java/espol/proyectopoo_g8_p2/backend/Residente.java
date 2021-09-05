@@ -154,7 +154,6 @@ public class Residente extends Usuario{
                 String linea;
                 
                 while((linea=bf.readLine())!=null){
-                    System.out.println(linea);
                     String[] p = linea.split(",");
                     String[] fecha = p[6].split("-");
                     LocalDateTime lc = LocalDateTime.of(Integer.parseInt(fecha[0]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[2]), Integer.parseInt(fecha[3]), Integer.parseInt(fecha[4]));
@@ -228,7 +227,6 @@ public class Residente extends Usuario{
                 Casa casa =new Casa();
                 
                 while((linea=bf.readLine())!=null){
-                    System.out.println(linea);
                     String[] p = linea.split(",");
                     for(Casa ca:casas){
                         if(ca.getResidente().equals(p[4])){

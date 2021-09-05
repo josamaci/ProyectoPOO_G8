@@ -80,7 +80,6 @@ import java.util.List;
                 String linea;
                 
                 while((linea=bf.readLine())!=null){
-                    System.out.println(linea);
                     String[] p = linea.split(",");
                     String[] fecha = p[6].split("-");
                     LocalDateTime lc = LocalDateTime.of(Integer.parseInt(fecha[0]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[2]), Integer.parseInt(fecha[3]), Integer.parseInt(fecha[4]));
@@ -137,11 +136,18 @@ import java.util.List;
     return fechaIngreso;
     }
         /**
-     * getter que devuelve un boolean si se usó la 
+     * getter que devuelve un boolean si se usó el código
      * @return usoCodigo
      */
         public boolean getUsoCodigo(){
     return usoCodigo;
+    }
+        /**
+     * getter que devuelve el correo 
+     * @return correo
+     */
+        public String getCorreo(){
+    return correo;
     }
         /**
          * setter que cambia el codigo de acceso del visitante
