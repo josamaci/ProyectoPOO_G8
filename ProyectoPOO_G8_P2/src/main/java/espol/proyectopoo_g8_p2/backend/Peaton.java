@@ -6,18 +6,36 @@ import javafx.scene.control.Alert;
 public class Peaton implements Movibles{
     private String numCedula;
     private String pinAcceso;
+    /**
+     * Constructor de la clase peatón
+     * @param numCedula
+     * @param pinAcceso 
+     */
     public Peaton(String numCedula, String pinAcceso){
         this.numCedula=numCedula;
         this.pinAcceso=pinAcceso;
     }
-
+    
+    /**
+     * getter que retorna el número de cédula del peatón
+     * @return numCedula
+     */
     public String getNumCedula(){
     return numCedula;
     }
+    
+    /**
+     * getter que retorna el pin de acceso del peatón
+     * @return pinAcceso
+     */
     public String getPinAcceso(){
     return pinAcceso;
     }
-
+    
+    /**
+     * Sobreescritura de un método abstracto de la interfaz movible, retorna un boolean que confirma o no el ingreso del peatón a la ciudadela
+     * @return comp
+     */
     @Override
     public boolean ingreso() {
         List<Residente> residentes = Residente.cargarResidente();
