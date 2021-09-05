@@ -36,7 +36,7 @@ public class Residente extends Usuario{
     private ArrayList<Visitante> visitantes;
         
     /**
-     * 
+     * Cnstructor que crea un nuevo usuario sin vehículos.
      * @param nombreUsuario
      * @param contrasenia
      * @param correo
@@ -58,7 +58,18 @@ public class Residente extends Usuario{
             vehiculos = new ArrayList();
             
         }
-        
+        /**
+         * Cnstructor que crea un nuevo usuario.
+         * @param nombreUsuario
+         * @param contrasenia
+         * @param correo
+         * @param casa
+         * @param genero
+         * @param nombre
+         * @param vehiculos
+         * @param cedula
+         * @param pinAcceso 
+         */
         public Residente(String nombreUsuario, String contrasenia, String correo, 
                 Casa casa, String genero, String nombre,ArrayList<Vehiculo> vehiculos,String cedula, String pinAcceso){
             super(nombreUsuario, contrasenia);
@@ -71,6 +82,16 @@ public class Residente extends Usuario{
             this.vehiculos = vehiculos;
             
         }
+    /**
+     * Método estático que registra un visitante y devuelve al mismo.
+     * @param nombre
+     * @param numcedula
+     * @param correo
+     * @param mzResidente
+     * @param villaResidente
+     * @param fecha
+     * @return 
+     */    
     public static Visitante registrarVisitante(String nombre,String numcedula,String correo,String mzResidente,String villaResidente, LocalDateTime fecha){
     
     List<Visitante> visitantes = Visitante.cargarVisitante();
@@ -96,17 +117,14 @@ public class Residente extends Usuario{
         }
     }
     }while(c);
-    
 
-    
     String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
     try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta, true))){
             
                     String line = codigo+","+nombre+","+numcedula+","+correo+","+mzResidente+","+villaResidente+","+fecha.getYear()+"-"+fecha.getMonthValue()+"-"+fecha.getDayOfMonth()+"-"+fecha.getHour()+"-"+fecha.getMinute();
                     bf.write(line);
                     bf.newLine();
-                
-                                
+             
             }catch (FileNotFoundException ex){
                 System.out.println("ERROR File");
             } catch (IOException ex){
@@ -114,20 +132,17 @@ public class Residente extends Usuario{
             }
     return new Visitante(codigo,nombre,numcedula,correo,mzResidente,villaResidente,fecha);
     }
-
-        
-
-
-
-        public void registrarVehiculo(Vehiculo vehiculo){
-            vehiculos.add(vehiculo);
+/**
+ * Método que registra un vehículo para un residente.
+ * @param vehiculo 
+ */
+    public void registrarVehiculo(Vehiculo vehiculo){
+        vehiculos.add(vehiculo);
         }
-        
-        
-
-        
-        
-
+/**
+ * Método devuelve una lista de visistantes que visitarán al residente en cuestión.
+ * @return visitantes
+ */
      public List<Visitante> listaVisitantes(){
      Residente r = (Residente)App.getUsuario();    
      String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
@@ -155,7 +170,10 @@ public class Residente extends Usuario{
         return visitantes;
 
         }
-        
+    /**
+     * Método que elimina a un visitante
+     * @param v 
+     */
         public void eliminarVisitante(Visitante v){
  
    File inputFile = new File("src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt");
@@ -192,7 +210,10 @@ public class Residente extends Usuario{
     }
         }
   
-        
+        /**
+         * Método estático que carga en una lista a los residente ingresados en el archivo residentes.txt
+         * @return residentes
+         */
         public static List<Residente> cargarResidente(){
         
             String ruta = "src/main/resources/espol/proyectopoo_g8_p2/residentes.txt";
@@ -229,44 +250,97 @@ public class Residente extends Usuario{
         System.out.println(residentes);    
         return residentes;
     }
+        /**
+         * getter que retorna el correo del residente.
+         * @return correo
+         */
           public String getCorreo(){
             return correo;
         }
+          /**
+         * getter que retorna el genero del residente.
+         * @return genero
+         */
         public GENERO getGenero(){
             return genero;
         }
+        /**
+         * getter que retorna la casa del residente.
+         * @return casa
+         */
         public Casa getCasa(){
             return casa;
         }
+        /**
+         * getter que retorna el nombre del residente.
+         * @return nombre
+         */
         public String getNombre(){
             return nombre;
         }
-
+        /**
+         * getter que retorna la cédula del residente.
+         * @return cedula
+         */
         public String getCedula(){
             return cedula;
         }
+        /**
+         * getter que retorna el Pin de Acceso del residente.
+         * @return pinAcceso
+         */
         public String getPinAcceso(){
             return pinAcceso;
         }
+        /**
+         * Setter cambia el correo del residente.
+         * @param c
+         */
          public void setCorreo(String c){
             correo=c;
         }
+         /**
+         * Setter cambia el genero del residente.
+         * @param g
+         */
         public void setGenero(GENERO g){
             genero=g;
         }
+        /**
+         * Setter cambia la casa del residente.
+         * @param casa
+         */
         public void setCasa(Casa casa){
             this.casa=casa;
         }
+        /**
+         * Setter cambia el nombre del residente.
+         * @param nombre
+         */
         public void setNombre(String nombre){
             this.nombre=nombre;
         }
+        /**
+         * Setter cambia la cédula del residente.
+         * @param cedula
+         */
        public void setCedula(String cedula){
             this.cedula=cedula;
         }
+       /**
+         * Setter cambia el pin de acceso del residente.
+         * @param pinAcceso
+         */
          public void setPinAcceso(String pinAcceso){
             this.pinAcceso=pinAcceso;
         }
-       
+       /**
+        * Método estático que cambia el pin del residente y retorna al residente con el cambio.
+        * @param pin
+        * @param usuario
+        * @return res
+        * @throws IOException 
+        */
         public static Residente CambiarPinResidente(String pin, String usuario) throws IOException{
             List <Residente> residentes = cargarResidente();
             String ruta = "src/main/resources/espol/proyectopoo_g8_p2/residentes.txt";
@@ -296,8 +370,14 @@ public class Residente extends Usuario{
             } 
           return res;  
         }
-        
-        public Visitante registrarVisitanteSinCodigo(String nombre,String numcedula, LocalDateTime fecha){
+    /**
+     * Método que registra aun visitante sin código y devuelve al visitante.
+     * @param nombre
+     * @param numcedula
+     * @param fecha
+     * @return Visitante
+     */    
+    public Visitante registrarVisitanteSinCodigo(String nombre,String numcedula, LocalDateTime fecha){
     
     List<Visitante> visitantes = Visitante.cargarVisitante();
     char [] chars = "0123456789abcdefghijklmnopqrstuvwxyz".toCharArray();

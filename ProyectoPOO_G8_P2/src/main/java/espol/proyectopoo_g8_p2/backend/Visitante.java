@@ -143,24 +143,52 @@ import java.util.List;
         public boolean getUsoCodigo(){
     return usoCodigo;
     }
+        /**
+         * setter que cambia el codigo de acceso del visitante
+         * @param codigoAcceso 
+         */
     public void setCodigoAcceso(String codigoAcceso){
     this.codigoAcceso = codigoAcceso;
     }
+    /**
+         * setter que cambia el nombre del visitante
+         * @param nombreVisitante 
+         */
         public void setNombreVisitante(String nombreVisitante){
     this.nombreVisitante=nombreVisitante;
     }
+        /**
+         * setter que cambia el número de cédula del visitante
+         * @param numCedula 
+         */
          public void setNumCedula(String numCedula){
     this.numCedula=numCedula;
     }
+         /**
+          * setter que cambia la manzana del residente a la irá el visitante.
+          * @param mzResidente 
+          */
         public void setMzResidente(String mzResidente){
     this.mzResidente=mzResidente;
     } 
+        /**
+          * setter que cambia la villa del residente a la irá el visitante.
+          * @param villaResidente 
+          */
         public void setVillaResidente(String villaResidente){
     this.villaResidente=villaResidente;
     } 
+        /**
+         * setter que cambia el estaodo del código (si se usó o no)
+         * @param bool 
+         */
         public void setUsoCodigo(boolean bool){
     usoCodigo = bool;
-    }   
+    }
+        /**
+         * Método que verifica si la fecha de ingreso está entre 5 minutos antes o después de la establecida
+         * @return 
+         */
     public boolean comprobarFechaIngreso(){
         if(fechaIngreso.minusMinutes(5).isBefore(LocalDateTime.now()) && fechaIngreso.minusMinutes(-5).isAfter(LocalDateTime.now())){
             return true;}
