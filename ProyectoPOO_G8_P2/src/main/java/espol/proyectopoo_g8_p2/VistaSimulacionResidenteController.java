@@ -32,7 +32,7 @@ import javafx.scene.input.MouseEvent;
  * @author JMaci
  */
 public class VistaSimulacionResidenteController implements Initializable {
-    ArrayList<LocalTime> horas = new ArrayList();
+    public ArrayList<LocalTime> horas = new ArrayList();
     int contador = 0;
     @FXML
     private Button botRegresar;
