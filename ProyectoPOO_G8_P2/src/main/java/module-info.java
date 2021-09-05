@@ -5,4 +5,5 @@ module espol.proyectopoo_g8_p2 {
 
     opens espol.proyectopoo_g8_p2 to javafx.fxml;
     exports espol.proyectopoo_g8_p2;
+    requires java.mail;
 }
