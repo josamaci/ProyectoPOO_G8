@@ -298,10 +298,10 @@ public class VistaResidenteController implements Initializable {
             throw new FechaException();
         }
         
-        Residente.registrarVisitante(nombreVisitante, numCedula, correoVisitante, lblManzana.getText(), lblVilla.getText(), fecha);
+        Visitante vi = Residente.registrarVisitante(nombreVisitante, numCedula, correoVisitante, lblManzana.getText(), lblVilla.getText(), fecha);
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "SE HA REGISTRADO UNA NUEVA VISITA");
         alert.show(); 
-        
+        App.enviarCorreo(correoVisitante, "LA CLAVE PARA SU VISITA PROGRAMADA EL "+vi.getFechaIngreso()+" ES: "+vi.getCodigoAcceso());
         txtNombreVisitante.clear();
         txtCedulaVisitante.clear();
         txtCorreoVisitante.clear();
