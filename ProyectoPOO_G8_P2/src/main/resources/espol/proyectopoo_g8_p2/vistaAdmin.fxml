@@ -41,7 +41,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Reportes">
+                  <Button mnemonicParsing="false" onAction="#generarReporte" text="Reportes">
                      <font>
                         <Font name="Consolas" size="15.0" />
                      </font>

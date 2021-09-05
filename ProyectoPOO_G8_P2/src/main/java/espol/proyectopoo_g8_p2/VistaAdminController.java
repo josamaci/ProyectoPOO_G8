@@ -154,4 +154,11 @@ public class VistaAdminController implements Initializable {
         App.setRoot("principal");
     }
     
+    @FXML  
+    private void generarReporte(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("seleccionarGráfica.fxml"));
+        Parent viewInicio = loader.load();
+        App.setRoot("seleccionarGráfica");
+    }
+    
 }

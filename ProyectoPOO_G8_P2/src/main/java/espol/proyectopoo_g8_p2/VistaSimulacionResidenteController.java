@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 
@@ -32,7 +33,8 @@ import javafx.scene.input.MouseEvent;
  * @author JMaci
  */
 public class VistaSimulacionResidenteController implements Initializable {
-    public ArrayList<LocalTime> horas = new ArrayList();
+    
+    private ArrayList<LocalTime> horas = new ArrayList();
     int contador = 0;
     @FXML
     private Button botRegresar;
@@ -96,6 +98,23 @@ public class VistaSimulacionResidenteController implements Initializable {
         if(i){
         contador++;
         horas.add(LocalTime.now());
+            try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("graficaBarra.fxml"));
+                GraficaBarraController reporte = loader.getController();
+                reporte.setHoras(horas);
+                
+            }catch(Exception e){
+                System.out.println("Error cargando la lista al controlador");
+            }
+            try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("graficaLinea.fxml"));
+                GraficaBarraController reporte = loader.getController();
+                reporte.setHoras(horas);
+                
+            }catch(Exception e){
+                System.out.println("Error cargando la lista al controlador");
+            }
+            
         }
 
         }catch(EnBlancoException e){
@@ -103,6 +122,7 @@ public class VistaSimulacionResidenteController implements Initializable {
         alert.show();  
         }
     }
+    
     
     public int getContadorResidente(){
         return contador;
