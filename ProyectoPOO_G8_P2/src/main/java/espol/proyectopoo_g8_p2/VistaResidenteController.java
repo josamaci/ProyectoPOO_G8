@@ -6,6 +6,7 @@
 package espol.proyectopoo_g8_p2;
 
 import espol.proyectopoo_g8_p2.backend.Residente;
+import espol.proyectopoo_g8_p2.backend.Ubicacion;
 import espol.proyectopoo_g8_p2.backend.Vehiculo;
 import espol.proyectopoo_g8_p2.backend.Visitante;
 import espol.proyectopoo_g8_p2.excepciones.EnBlancoException;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -31,12 +33,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.util.Callback;
 /**
  * FXML Controller class
  *
@@ -88,21 +92,7 @@ public class VistaResidenteController implements Initializable {
     private ComboBox<Integer> ComboDiaVisita;
     @FXML
     private TextField txtDiaVisitante;
-    @FXML
-    private TableColumn<?,?> colCod;
-    @FXML
-    private TableColumn<?, ?> colNom;
-    @FXML
-    private TableColumn<?, ?> colCed;
-    @FXML
-    private TableColumn<?, ?> colCor;
-    @FXML
-    private TableColumn<?, ?> colMz;
-    @FXML
-    private TableColumn<?, ?> colVil;
-    @FXML
-    private TableColumn<?, ?> colFec;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -145,11 +135,63 @@ public class VistaResidenteController implements Initializable {
         for(int i=0; i<=59; i++){
         ComboMinutoVisita.getItems().add(i);}
         ComboMinutoVisita.getSelectionModel().select(LocalDateTime.now().getMinute());
+              
         
-        tableVisitante.setEditable(true);       
+        ObservableList<Visitante> visitantes = FXCollections.observableArrayList(r.listaVisitantes());
+        TableView tableVisitantes = new TableView<Visitante>();
+        tableVisitantes.setItems(visitantes);
+        TableColumn<Visitante,String> colCod = new TableColumn<>("Código");
+        TableColumn<Visitante,String> colNom = new TableColumn<>("Nombre");
+        TableColumn<Visitante,String> colCed = new TableColumn<>("Cédula");
+        TableColumn<Visitante,String> colCor = new TableColumn<>("Correo");
+        TableColumn<Visitante,String> colMz = new TableColumn<>("Manzana");
+        TableColumn<Visitante,String> colVil = new TableColumn<>("Villa");
+        TableColumn<Visitante,LocalDateTime> colFec = new TableColumn<>("Fecha");
         
-        final ObservableList<Visitante> visitantes = FXCollections.observableArrayList(r.listaVisitantes());
-        tableVisitante.getItems().addAll(visitantes);
+        colCod.setCellValueFactory(new Callback<CellDataFeatures<Visitante, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Visitante, String> p) {
+         return ObservableValue.class.cast(p.getValue().getCodigoAcceso());
+        }});
+        
+        colNom.setCellValueFactory(new Callback<CellDataFeatures<Visitante, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Visitante, String> p) {
+         return ObservableValue.class.cast(p.getValue().getNombreVisitante());
+        }});
+        
+        colCed.setCellValueFactory(new Callback<CellDataFeatures<Visitante, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Visitante, String> p) {
+         return ObservableValue.class.cast(p.getValue().getNumCedula());
+        }});
+
+        colCor.setCellValueFactory(new Callback<CellDataFeatures<Visitante, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Visitante, String> p) {
+         return ObservableValue.class.cast(p.getValue().getCorreo());
+        }});
+        
+        colMz.setCellValueFactory(new Callback<CellDataFeatures<Visitante, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Visitante, String> p) {
+         return ObservableValue.class.cast(p.getValue().getMzResidente());
+        }});
+        
+        colVil.setCellValueFactory(new Callback<CellDataFeatures<Visitante, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Visitante, String> p) {
+         return ObservableValue.class.cast(p.getValue().getVillaResidente());
+        }});
+        
+        colFec.setCellValueFactory(new Callback<CellDataFeatures<Visitante, LocalDateTime>, ObservableValue<LocalDateTime>>(){
+            @Override
+            public ObservableValue<LocalDateTime> call(CellDataFeatures<Visitante, LocalDateTime> p) {
+         return ObservableValue.class.cast(p.getValue().getFechaIngreso());
+        }});
+        tableVisitantes.getColumns().addAll(colCod,colNom,colCed,colCor,colMz,colVil,colFec);
+        tableVisitante = tableVisitantes;
+        
     }    
 
     @FXML
@@ -298,10 +340,10 @@ public class VistaResidenteController implements Initializable {
             throw new FechaException();
         }
         
-        Residente.registrarVisitante(nombreVisitante, numCedula, correoVisitante, lblManzana.getText(), lblVilla.getText(), fecha);
+        Visitante vi = Residente.registrarVisitante(nombreVisitante, numCedula, correoVisitante, lblManzana.getText(), lblVilla.getText(), fecha);
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "SE HA REGISTRADO UNA NUEVA VISITA");
         alert.show(); 
-        
+        App.enviarCorreo(correoVisitante, "LA CLAVE PARA SU VISITA PROGRAMADA EL "+vi.getFechaIngreso()+" ES: "+vi.getCodigoAcceso());
         txtNombreVisitante.clear();
         txtCedulaVisitante.clear();
         txtCorreoVisitante.clear();

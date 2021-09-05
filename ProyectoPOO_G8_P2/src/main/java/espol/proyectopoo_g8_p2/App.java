@@ -2,6 +2,7 @@ package espol.proyectopoo_g8_p2;
 
 import espol.proyectopoo_g8_p2.backend.Casa;
 import espol.proyectopoo_g8_p2.backend.Ciudadela;
+import espol.proyectopoo_g8_p2.backend.Mail;
 import espol.proyectopoo_g8_p2.backend.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.List;
+import javax.mail.MessagingException;
 
 /**
  * JavaFX App
@@ -35,6 +38,15 @@ public class App extends Application {
         stage.show();
         }catch(IOException e){
         e.printStackTrace();
+        }
+    }
+    public static void enviarCorreo(String destinatario, String texto){
+        try {
+            Mail m = new Mail("src/main/resources/espol/proyectopoo_g8_p2/configuracion.prop");
+            m.enviarEmail("Correo", texto, destinatario);
+            System.out.println("Correo enviado con éxito!");
+        } catch (InvalidParameterException | IOException | MessagingException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 

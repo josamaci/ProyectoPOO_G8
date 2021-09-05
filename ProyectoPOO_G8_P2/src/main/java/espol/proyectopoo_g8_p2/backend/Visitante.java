@@ -66,7 +66,7 @@ import java.util.List;
     }
     
     /**
-     * método estático que devuelve la lista de los visitantes que se encuentran en visitantes.txt
+     * Método estático que devuelve la lista de los visitantes que se encuentran en visitantes.txt
      * @return visitantes
      */
     public static List<Visitante> cargarVisitante(){
@@ -80,7 +80,6 @@ import java.util.List;
                 String linea;
                 
                 while((linea=bf.readLine())!=null){
-                    System.out.println(linea);
                     String[] p = linea.split(",");
                     String[] fecha = p[6].split("-");
                     LocalDateTime lc = LocalDateTime.of(Integer.parseInt(fecha[0]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[2]), Integer.parseInt(fecha[3]), Integer.parseInt(fecha[4]));
@@ -94,46 +93,108 @@ import java.util.List;
         return visitantes;
     } 
     
-    
+    /**
+     * getter que devuelve el código de acceso del visitante
+     * @return codigoAcceso
+     */
     public String getCodigoAcceso(){
     return codigoAcceso;
     }
+    /**
+     * getter que devuelve el nombre del visitante
+     * @return nombreVisitante
+     */
         public String getNombreVisitante(){
     return nombreVisitante;
     } 
+    /**
+     * getter que devuelve el número de cédula del visitante
+     * @return numCedula
+     */
         public String getNumCedula(){
     return numCedula;
     } 
+    /**
+     * getter que devuelve la manzana de la casa del residente
+     * @return mzResidente
+     */
         public String getMzResidente(){
     return mzResidente;
     } 
+    /**
+     * getter que devuelve la villa de la casa del residente
+     * @return villaResidente
+     */
         public String getVillaResidente(){
     return villaResidente;
     } 
+    /**
+     * getter que devuelve la fecha de ingreso a la casa del residente
+     * @return fechaIngreso
+     */
         public LocalDateTime getFechaIngreso(){
     return fechaIngreso;
     }
+        /**
+     * getter que devuelve un boolean si se usó el código
+     * @return usoCodigo
+     */
         public boolean getUsoCodigo(){
     return usoCodigo;
     }
+        /**
+     * getter que devuelve el correo 
+     * @return correo
+     */
+        public String getCorreo(){
+    return correo;
+    }
+        /**
+         * setter que cambia el codigo de acceso del visitante
+         * @param codigoAcceso 
+         */
     public void setCodigoAcceso(String codigoAcceso){
     this.codigoAcceso = codigoAcceso;
     }
+    /**
+         * setter que cambia el nombre del visitante
+         * @param nombreVisitante 
+         */
         public void setNombreVisitante(String nombreVisitante){
     this.nombreVisitante=nombreVisitante;
     }
+        /**
+         * setter que cambia el número de cédula del visitante
+         * @param numCedula 
+         */
          public void setNumCedula(String numCedula){
     this.numCedula=numCedula;
     }
+         /**
+          * setter que cambia la manzana del residente a la irá el visitante.
+          * @param mzResidente 
+          */
         public void setMzResidente(String mzResidente){
     this.mzResidente=mzResidente;
     } 
+        /**
+          * setter que cambia la villa del residente a la irá el visitante.
+          * @param villaResidente 
+          */
         public void setVillaResidente(String villaResidente){
     this.villaResidente=villaResidente;
     } 
+        /**
+         * setter que cambia el estaodo del código (si se usó o no)
+         * @param bool 
+         */
         public void setUsoCodigo(boolean bool){
     usoCodigo = bool;
-    }   
+    }
+        /**
+         * Método que verifica si la fecha de ingreso está entre 5 minutos antes o después de la establecida
+         * @return 
+         */
     public boolean comprobarFechaIngreso(){
         if(fechaIngreso.minusMinutes(5).isBefore(LocalDateTime.now()) && fechaIngreso.minusMinutes(-5).isAfter(LocalDateTime.now())){
             return true;}

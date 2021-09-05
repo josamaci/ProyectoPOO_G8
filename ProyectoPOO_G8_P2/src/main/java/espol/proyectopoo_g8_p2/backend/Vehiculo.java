@@ -24,16 +24,29 @@ import javafx.scene.control.Alert;
 public class Vehiculo implements Movibles{
     private String numMatricula;
     private String nombrePropietario;
-    
+    /**
+     * Constructor para la clase vehiculo
+     * @param num - Define el numero de matricula
+     * @param nombre - Define el nombre del vehiculo
+     
+     */ 
     public Vehiculo(String num, String nombre){
         numMatricula = num;
         nombrePropietario = nombre;
     }
+    /**
+     * Constructor para la clase Vehiculo
+     * @param x - Define el numero de matricula
+     
+     */ 
     public Vehiculo(String num){
         numMatricula = num;
         nombrePropietario = null;
     }
- 
+ /**
+     * metodo para cargar los datos de los vehiculos del fichero
+     * vehiculos.txt
+     * */
     
     public static List<Vehiculo> cargarVehiculos(){
         
@@ -60,19 +73,38 @@ public class Vehiculo implements Movibles{
             }
         return vehiculos;
     }
+    /**
+     * getter que retorna el numero de matricula 
+     * @return numMatricula
+     */
     public String getNumMatricula(){
         return numMatricula;
     }
+    /**
+     * getter que retorna el nombre del propietario
+     * @return nombrePropietario
+     */
     public String getNombrePropietario(){
         return nombrePropietario;
     }
+     /**
+     * setter que retorna el numero de matricula
+     * @param numero
+     */
      public void setNumMatricula(String numero){
          
         numMatricula=numero;
     }
+      /**
+     * setter que retorna el nombre del propietario
+     * @param nombre
+     */
     public void setNombrePropietario(String nombre){
         nombrePropietario=nombre;
     }
+    /**
+     * metodo para agregar un nuevo vehiculo al fichero
+     * */
     
     public static void AgregarVehiculo(Vehiculo veh) throws IOException{
             List <Vehiculo> vehiculos = cargarVehiculos();
@@ -92,7 +124,10 @@ public class Vehiculo implements Movibles{
             }
             
         }
-
+/**
+     * Método que devuelve un boolean si el vehiculo puede ingresar
+     * @return boolean 
+     */
     @Override
     public boolean ingreso() {
         List<Vehiculo> vehiculos = Vehiculo.cargarVehiculos();

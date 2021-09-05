@@ -107,6 +107,7 @@ public class VistaSimulacionVisitanteController implements Initializable {
     @FXML
     private void enviar(MouseEvent event) {
         List<Residente> residentes = Residente.cargarResidente();
+
         boolean comp = true;
         try{
         String nomVis = txtNombreVisitante.getText();
@@ -124,7 +125,7 @@ public class VistaSimulacionVisitanteController implements Initializable {
                 comp = false;
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡SE HA ENVIADO EL CORREO AL RESIDENTE! \nVaya a la pestaña \"Con Código\" para el ingreso del visitante.");
                     alert.show();
-                
+                App.enviarCorreo(r.getCorreo(), "HA RECIBIDO UNA VISITA DE "+v.getNombreVisitante()+" con cédula: "+v.getNumCedula()+". \nSi desea que esta persona ingrese a la ciudadela comuníquese con ella y envíele el siguiente código de acceso: "+v.getCodigoAcceso());
             }
             if(comp){Alert alert = new Alert(Alert.AlertType.ERROR, "¡EL RESIDENTE NO HA SIDO ENCONTRADO!");
                     alert.show();
@@ -137,6 +138,7 @@ public class VistaSimulacionVisitanteController implements Initializable {
         txtManzanaResidente.clear();
         txtVillaResidente.clear();
         contador++;
+        
         }catch(EnBlancoException e){
         Alert alert = new Alert(Alert.AlertType.ERROR, "¡NO PUEDE DEJAR EL CAMPO EN BLANCO!");
         alert.show();  

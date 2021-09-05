@@ -12,20 +12,41 @@ package espol.proyectopoo_g8_p2.backend;
 public class Ubicacion {
     private double x;
     private double y;
-    
+   /**
+     * Constructor para la clase ubicacion
+     * @param x - Define la coordenada en x
+     * @param y - Define la coordenada en y
+     
+     */   
     public Ubicacion(double x, double y){
         this.x = x;
         this.y = y;
     }
+    /**
+     * getter que retorna la coordenada x 
+     * @return x
+     */
     public double getX() {
         return x;
     }
+      /**
+     * setter que retorna la coordenada x
+     * @param x 
+     */
     public void setX(double x) {
         this.x = x;
     }
+    /**
+     * getter que retorna la coordenada y
+     * @return y
+     */
     public double getY() {
         return y;
     }
+      /**
+     * setter que retorna la coordenada y
+     * @param y 
+     */
     public void setY(double y) {
         this.y = y;
     }
@@ -39,10 +60,19 @@ public class Ubicacion {
     }
 
     @Override
+    /**
+     * Metodo retorna el objeto formato string
+     * 
+     * 
+     * */
     public String toString() {
         return "Ubicacion{" + "x=" + x + ", y=" + y + '}';
     }
-    
+      /**
+     * Metodo retorna el objeto en csv
+     * 
+     * 
+     * */
     public String toCSV() {
         return getX()+":"+getY();
     }

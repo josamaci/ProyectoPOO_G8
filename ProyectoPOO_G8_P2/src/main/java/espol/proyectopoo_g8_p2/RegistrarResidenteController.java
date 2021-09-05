@@ -111,6 +111,7 @@ public class RegistrarResidenteController implements Initializable {
                                         if(c.getManzana().equals(casaSeleccionada.getManzana())){
                                             if(c.getVilla().equals(casaSeleccionada.getVilla())){
                                                 App.getCiudadela().getCasa(c).setResidente(nuevoResidente.getNombre());
+                                                App.enviarCorreo(nuevoResidente.getCorreo(), "EL PIN GENERADO PARA SU INGRESO EN LA CIUDADELA ES: "+pin);
                                             }
                                         }                                    
                                     }
