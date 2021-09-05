@@ -108,8 +108,9 @@ public class Vehiculo implements Movibles{
     
     public static void AgregarVehiculo(Vehiculo veh) throws IOException{
             List <Vehiculo> vehiculos = cargarVehiculos();
-            String ruta = "src/main/resources/espol/proyectopoo_g8_p2/vehiculos.txt";
+            String ruta = "vehiculos.txt";
             vehiculos.add(veh);
+            
             try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta))){
             for(Vehiculo v: vehiculos){
                     String line = v.getNumMatricula()+","+v.getNombrePropietario();

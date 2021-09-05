@@ -1,7 +1,10 @@
 package espol.proyectopoo_g8_p2.backend;
+import espol.proyectopoo_g8_p2.App;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -71,11 +74,12 @@ import java.util.List;
      */
     public static List<Visitante> cargarVisitante(){
         
-            String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+            //String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+            String ruta = "visitantes.txt";
             List<Visitante> visitantes = new ArrayList<>();           
-            Charset c = Charset.forName("UTF-8");
-            try(BufferedReader bf = new BufferedReader(
-                                    new FileReader(ruta,c))){
+            try(InputStream input = App.class.getResource(ruta).openStream();
+                BufferedReader bf = new BufferedReader(
+                                    new InputStreamReader(input,"UTF-8"))){
                 
                 String linea;
                 

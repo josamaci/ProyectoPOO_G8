@@ -42,7 +42,7 @@ public class App extends Application {
     }
     public static void enviarCorreo(String destinatario, String texto){
         try {
-            Mail m = new Mail("src/main/resources/espol/proyectopoo_g8_p2/configuracion.prop");
+            Mail m = new Mail("configuracion.prop");
             m.enviarEmail("Correo", texto, destinatario);
             System.out.println("Correo enviado con éxito!");
         } catch (InvalidParameterException | IOException | MessagingException ex) {

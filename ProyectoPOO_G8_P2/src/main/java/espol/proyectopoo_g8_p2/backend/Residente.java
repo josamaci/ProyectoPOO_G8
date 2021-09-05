@@ -118,7 +118,9 @@ public class Residente extends Usuario{
     }
     }while(c);
 
-    String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+    //String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+    String ruta = "visitantes.txt";
+    
     try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta, true))){
             
                     String line = codigo+","+nombre+","+numcedula+","+correo+","+mzResidente+","+villaResidente+","+fecha.getYear()+"-"+fecha.getMonthValue()+"-"+fecha.getDayOfMonth()+"-"+fecha.getHour()+"-"+fecha.getMinute();
@@ -143,13 +145,16 @@ public class Residente extends Usuario{
  * Método devuelve una lista de visistantes que visitarán al residente en cuestión.
  * @return visitantes
  */
+    
+    
      public List<Visitante> listaVisitantes(){
      Residente r = (Residente)App.getUsuario();    
-     String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+     //String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+     String ruta = "visitantes.txt";
             List<Visitante> visitantes = new ArrayList<>();           
-            Charset c = Charset.forName("UTF-8");
-            try(BufferedReader bf = new BufferedReader(
-                                    new FileReader(ruta,c))){
+            try(InputStream input = App.class.getResource(ruta).openStream();
+                BufferedReader bf = new BufferedReader(
+                                    new InputStreamReader(input,"UTF-8"))){
                 
                 String linea;
                 
@@ -175,8 +180,12 @@ public class Residente extends Usuario{
      */
         public void eliminarVisitante(Visitante v){
  
-   File inputFile = new File("src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt");
-   File outputFile = new File("src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt");
+   //File inputFile = new File("src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt");
+   //File outputFile = new File("src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt");
+   
+   File inputFile = new File("visitantes.txt");
+   File outputFile = new File("visitantes.txt");
+   
    LocalDateTime fActual=LocalDateTime.now();
     try {
       BufferedReader reader = new BufferedReader(new FileReader(inputFile));
@@ -215,13 +224,14 @@ public class Residente extends Usuario{
          */
         public static List<Residente> cargarResidente(){
         
-            String ruta = "src/main/resources/espol/proyectopoo_g8_p2/residentes.txt";
+            //String ruta = "src/main/resources/espol/proyectopoo_g8_p2/residentes.txt";
+            String ruta = "residentes.txt";
             List<Residente> residentes = new ArrayList<>();
             List<Casa> casas = Casa.cargarCasa();
             List<Vehiculo> vehiculos = Vehiculo.cargarVehiculos();            
-            Charset c = Charset.forName("UTF-8");
-            try(BufferedReader bf = new BufferedReader(
-                                    new FileReader(ruta,c))){
+            try(InputStream input = App.class.getResource(ruta).openStream();
+                BufferedReader bf = new BufferedReader(
+                                    new InputStreamReader(input,"UTF-8"))){
                 
                 String linea;
                 Casa casa =new Casa();
@@ -341,7 +351,8 @@ public class Residente extends Usuario{
         */
         public static Residente CambiarPinResidente(String pin, String usuario) throws IOException{
             List <Residente> residentes = cargarResidente();
-            String ruta = "src/main/resources/espol/proyectopoo_g8_p2/residentes.txt";
+            //String ruta = "src/main/resources/espol/proyectopoo_g8_p2/residentes.txt";
+            String ruta = "residentes.txt";
             
             Residente res=null;
             for(Residente r:residentes){
@@ -400,7 +411,8 @@ public class Residente extends Usuario{
         }
     }
     }while(c);
-    String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+    //String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
+    String ruta = "visitantes.txt";
     try(BufferedWriter bf = new BufferedWriter(new FileWriter(ruta, true))){
             
                     String line = codigo+","+nombre+","+numcedula+","+null+","+casa.getManzana()+","+casa.getVilla()+","+fecha.getYear()+"-"+fecha.getMonthValue()+"-"+fecha.getDayOfMonth()+"-"+fecha.getHour()+"-"+fecha.getMinute();
