@@ -217,6 +217,7 @@ public class VistaResidenteController implements Initializable {
             
             Residente r = Residente.CambiarPinResidente(pin, App.getUsuario().getNombreUsuario());
             lblPin.setText(r.getPinAcceso());
+            App.enviarCorreo(r.getCorreo(), "SU PIN HA SIDO CAMBIADO, EL NUEVO ES: "+pin);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Se ha cambiado su pin de acceso.");
             alert.show();
             
