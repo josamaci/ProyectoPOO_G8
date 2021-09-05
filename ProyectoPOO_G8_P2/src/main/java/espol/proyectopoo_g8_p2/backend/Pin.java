@@ -10,7 +10,11 @@ package espol.proyectopoo_g8_p2.backend;
  * @author andre
  */
 public class Pin {
-    
+    /**
+     * Método que crea el pin del residente
+     * @param n
+     * @return 
+     */
     public static String crearPin(int n){
         String numeros = "0123456789";
         
@@ -25,7 +29,10 @@ public class Pin {
         return sb.toString();
         
     }
-    
+    /**
+     * Método estático que ejecuta el método que crea el pin del residente
+     * @param args 
+     */
     public static void main(String[] args)
     {
   

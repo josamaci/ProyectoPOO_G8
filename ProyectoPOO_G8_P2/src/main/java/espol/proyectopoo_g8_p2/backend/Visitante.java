@@ -8,7 +8,6 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-
     public class Visitante{
     private String codigoAcceso;
     private String nombreVisitante;
@@ -19,6 +18,16 @@ import java.util.List;
     private String correo;
     private boolean usoCodigo;
     
+    /**
+     * Constructor que crea un Visitante 
+     * @param codigoAcceso
+     * @param nombreVisitante
+     * @param numCedula
+     * @param correo
+     * @param mzResidente
+     * @param villaResidente
+     * @param fechaIngreso 
+     */
     public Visitante(String codigoAcceso,String nombreVisitante,String numCedula,String correo, String mzResidente,String villaResidente,LocalDateTime fechaIngreso){
     this.codigoAcceso=codigoAcceso;
     this.nombreVisitante=nombreVisitante;
@@ -29,7 +38,15 @@ import java.util.List;
     this.correo = correo;
     this.usoCodigo = true;
     }
-    
+    /**
+     * Constructor que crea un Visitante sin correo
+     * @param codigoAcceso
+     * @param nombreVisitante
+     * @param numCedula
+     * @param mzResidente
+     * @param villaResidente
+     * @param fechaIngreso 
+     */
     public Visitante(String codigoAcceso,String nombreVisitante,String numCedula, String mzResidente,String villaResidente,LocalDateTime fechaIngreso){
     this.codigoAcceso=codigoAcceso;
     this.nombreVisitante=nombreVisitante;
@@ -41,11 +58,17 @@ import java.util.List;
     this.usoCodigo = true;
     }
     
+    /**
+     * Constructor vacío de visitante
+     */
     public Visitante(){
     
     }
     
-    
+    /**
+     * método estático que devuelve la lista de los visitantes que se encuentran en visitantes.txt
+     * @return visitantes
+     */
     public static List<Visitante> cargarVisitante(){
         
             String ruta = "src/main/resources/espol/proyectopoo_g8_p2/visitantes.txt";
@@ -111,11 +134,11 @@ import java.util.List;
         public void setUsoCodigo(boolean bool){
     usoCodigo = bool;
     }   
-        public boolean comprobarFechaIngreso(){
-            if(fechaIngreso.minusMinutes(5).isBefore(LocalDateTime.now()) && fechaIngreso.minusMinutes(-5).isAfter(LocalDateTime.now()))
-                return true;
+    public boolean comprobarFechaIngreso(){
+        if(fechaIngreso.minusMinutes(5).isBefore(LocalDateTime.now()) && fechaIngreso.minusMinutes(-5).isAfter(LocalDateTime.now())){
+            return true;}
             
-            return false;
+        return false;
         }
 }
 

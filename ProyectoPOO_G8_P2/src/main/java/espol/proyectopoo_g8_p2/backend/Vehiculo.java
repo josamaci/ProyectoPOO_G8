@@ -94,7 +94,7 @@ public class Vehiculo implements Movibles{
         }
 
     @Override
-    public int ingreso() {
+    public boolean ingreso() {
         List<Vehiculo> vehiculos = Vehiculo.cargarVehiculos();
         boolean comp = true;
         
@@ -103,7 +103,7 @@ public class Vehiculo implements Movibles{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "¡EL VEHÍCULO PUEDE INGRESAR!");
                 alert.show();
                 comp = false;
-                return 1;
+                return true;
             }
         }
         
@@ -111,6 +111,6 @@ public class Vehiculo implements Movibles{
             Alert alert = new Alert(Alert.AlertType.ERROR, "¡EL VEHÍCULO NO HA SIDO ENCONTRADO!");
             alert.show();
         }
-    return 0;
+    return false;
     }
 }
