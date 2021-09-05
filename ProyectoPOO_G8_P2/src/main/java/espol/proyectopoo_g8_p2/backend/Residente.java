@@ -34,7 +34,18 @@ public class Residente extends Usuario{
     private String cedula;
     private String pinAcceso;
     private ArrayList<Visitante> visitantes;
-    
+        
+    /**
+     * 
+     * @param nombreUsuario
+     * @param contrasenia
+     * @param correo
+     * @param casa
+     * @param genero
+     * @param nombre
+     * @param cedula
+     * @param pinAcceso 
+     */
         public Residente(String nombreUsuario, String contrasenia, String correo, 
                 Casa casa, String genero, String nombre, String cedula, String pinAcceso){
             super(nombreUsuario, contrasenia);
