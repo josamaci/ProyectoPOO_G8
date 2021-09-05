@@ -107,4 +107,8 @@ public class VistaSimulacionResidenteController implements Initializable {
     public int getContadorResidente(){
         return contador;
     }
+    
+    public ArrayList<LocalTime> getHoras(){
+        return horas;
+    }
 }
