@@ -66,7 +66,7 @@ import java.util.List;
     }
     
     /**
-     * método estático que devuelve la lista de los visitantes que se encuentran en visitantes.txt
+     * Método estático que devuelve la lista de los visitantes que se encuentran en visitantes.txt
      * @return visitantes
      */
     public static List<Visitante> cargarVisitante(){
@@ -94,19 +94,38 @@ import java.util.List;
         return visitantes;
     } 
     
-    
+    /**
+     * getter que devuelve el código de acceso del visitante
+     * @return codigoAcceso
+     */
     public String getCodigoAcceso(){
     return codigoAcceso;
     }
+    /**
+     * getter que devuelve el nombre del visitante
+     * @return nombreVisitante
+     */
         public String getNombreVisitante(){
     return nombreVisitante;
     } 
+    /**
+     * getter que devuelve el número de cédula del visitante
+     * @return numCedula
+     */
         public String getNumCedula(){
     return numCedula;
     } 
+    /**
+     * getter que devuelve la manzana de la casa del residente
+     * @return mzResidente
+     */
         public String getMzResidente(){
     return mzResidente;
     } 
+    /**
+     * getter que devuelve la villa de la casa del residente
+     * @return mzResidente
+     */
         public String getVillaResidente(){
     return villaResidente;
     } 
