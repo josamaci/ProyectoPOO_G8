@@ -30,7 +30,7 @@ public class Mail {
     public Mail(String ruta) throws IOException {
         this.properties = new Properties();
         loadConfig(ruta);
-
+        
         session = Session.getDefaultInstance(properties);
     }
 

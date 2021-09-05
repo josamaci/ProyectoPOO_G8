@@ -124,14 +124,22 @@ import java.util.List;
     } 
     /**
      * getter que devuelve la villa de la casa del residente
-     * @return mzResidente
+     * @return villaResidente
      */
         public String getVillaResidente(){
     return villaResidente;
     } 
+    /**
+     * getter que devuelve la fecha de ingreso a la casa del residente
+     * @return fechaIngreso
+     */
         public LocalDateTime getFechaIngreso(){
     return fechaIngreso;
     }
+        /**
+     * getter que devuelve un boolean si se usó la 
+     * @return usoCodigo
+     */
         public boolean getUsoCodigo(){
     return usoCodigo;
     }
